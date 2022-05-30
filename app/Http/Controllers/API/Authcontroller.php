@@ -25,7 +25,7 @@ class AuthController extends Controller
             $validatedData['nickname'] = 'Anonimo';
         }
 
-        if($validatedData['nickname'] = )
+        // if($validatedData['nickname'] = )
 
         $validatedData['password'] =  Hash::make($request->password);
 
