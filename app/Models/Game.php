@@ -13,9 +13,13 @@ class Game extends Model
     const youLost = 2;
 
     protected $fillable = [
-        'user_id',
         'dado1',
         'dado2',
-        'result'
+        'result',
+        'user_id'
     ];
+
+    public function user (){
+        $this->belongsTo(User::class);
+    }
 }
