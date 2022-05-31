@@ -28,7 +28,7 @@ class GameFactory extends Factory
             'dado1' => $dado1,
             'dado2' => $dado2,
             'result' => $result,
-            'User' => User::all()->random()->id
+            'user_id' => User::all()->random()->id
         ];
     }
 }

@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     //relación de uno a muchos 
 
-    public function games(){
+    public function game(){
         return $this->hasMany(Game::class);
     }
 }
