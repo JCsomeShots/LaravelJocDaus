@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +24,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/players')->group( function (){
     // Route::middleware('auth:api')->get('/all' , 'api\user\UserController@index');
     Route::post('/' , [AuthController::class , 'register'])->name('players.register');
+    Route::get('/' , [AuthController::class] , 'index')->name('list');
     Route::post('/login' , [AuthController::class , 'login'])->name('players.login');
+    Route::post('/logout' , [AuthController::class , 'logout'])->name('players.logout');
+    Route::put('/{id}' , [AuthController::class] , 'update')->name('players.update');
+
+    Route::prefix('/{id}')->group( function (){ 
+        Route::get('/games' , [GameController::class] , 'index')->name('games.index');
+        Route::post('/games' , [GameController::class] , 'store')->name('games.store');
+        Route::delete('/games' , [GameController::class] , 'delete')->name('games.delete');
+    });
 
     Route::prefix('/ranking')->group( function (){
-        Route::post('/loser' , [GameController::class,'loser'])->name('ranking.loser');
-        Route::post('/winner' , [GameController::class,'winner'])->name('ranking.winner');
+        Route::get('/' , [GameController::class,'ranking'])->name('ranking');
+        Route::get('/loser' , [GameController::class,'loser'])->name('ranking.loser');
+        Route::get('/winner' , [GameController::class,'winner'])->name('ranking.winner');
     });
 });
 
-Route::get('players' , [AuthController::class] , 'index')->name('api.v1.players.index');
-Route::get('players/{$id}/games' , [GameController::class] , 'index')->name('api.v1.game.index');
-Route::post('players/{$id}/games' , [GameController::class] , 'store')->name('api.v1.game.store');
-
-// Route::put('player'/{id}) 
+  

@@ -58,17 +58,8 @@ class GameController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
+  
 
     /**
      * Remove the specified resource from storage.
@@ -80,5 +71,19 @@ class GameController extends Controller
     {
         //
     }
+
+
+
+    // public function ranking(){
+    //     return response(['message' => 'por aquí chekas el ranking'], 200);
+    // }
+
+    // public function loser(){
+    //     return response(['message' => 'por aquí chekas quien ha perdido'], 200);
+    // }
+
+    // public function winner(){
+    //     return response(['message' => 'por aquí chekas quien ha ganado'], 200);
+    // }
 }
 

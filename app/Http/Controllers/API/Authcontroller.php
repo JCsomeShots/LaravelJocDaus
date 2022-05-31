@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
     public function register(Request $request)
     {
         $validatedData = $request->validate([
@@ -55,5 +56,18 @@ class AuthController extends Controller
         return response (['user' => Auth::user(), 'access_token' => $accessToken]);
         
         
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
     }
 }
