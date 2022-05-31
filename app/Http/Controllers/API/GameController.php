@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\User;
 
 class GameController extends Controller
 {
@@ -28,21 +29,21 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-         // $dado1 = rand(1 , 6);
-        // $dado2 = rand(1 , 6);
-        // ($dado1 + $dado2 === 7) ? $result = 'Has ganado' : $result = 'Has perdido';
+         $dado1 = rand(1 , 6);
+        $dado2 = rand(1 , 6);
+        ($dado1 + $dado2 === 7) ? $result = Game::youWin : $result = Game::youLost;
 
         // $user -> validate ([
         //     'jugador' => 'required',
         // ]);
 
-        // $jugada = new Jugada;
+        $jugada = new Game;
         // $jugada -> jugador = $user -> id;
-        // $jugada -> dado1 = $dado1;
-        // $jugada -> dado2 = $dado2;
-        // $jugada -> resultado = $resultado;
+        $jugada -> dado1 = $dado1;
+        $jugada -> dado2 = $dado2;
+        $jugada -> resultado = $result;
 
-        // $jugada->save();
+        $jugada->save();
     }
     
 
