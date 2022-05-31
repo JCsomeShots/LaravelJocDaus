@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Game;
 
 return new class extends Migration
 {
@@ -15,10 +16,10 @@ return new class extends Migration
     {
         Schema::create('game', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jugador')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->tinyInteger('dado1');
             $table->tinyInteger('dado2');
-            $table->string('resultado' , 11);
+            $table->enum('result' , [Game::youWin , Game::youLost]);
             $table->timestamps();
         });
     }

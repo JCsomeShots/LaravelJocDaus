@@ -7,31 +7,27 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use phpDocumentor\Reflection\Types\Null_;
+
 
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        
         $validatedData = $request->validate([
-            'nickname' => 'nullable',
-            'email' => 'required | email | max:255 | unique:users',
-            'password' => 'required | confirmed',
+            'nickname' => 'nullable | string |  max:255',
+            'email' => 'required | string |  email | max:255 | unique:users',
+            'password' => 'required | string | confirmed | min:8 ',
         ]);
 
         if(!$validatedData['nickname'] | $validatedData['nickname'] == Null){ 
             $validatedData['nickname'] = 'Anonimo';
         }
 
-        // if($validatedData['nickname'] = )
-
         $validatedData['password'] =  Hash::make($request->password);
 
         $user = User::create($validatedData);
 
-        $accessToken = $user->createToken('authToken')->accessToken;
+        $accessToken = $user->createToken('Token')->accessToken;
 
         return response ([
             'user' => $user,
