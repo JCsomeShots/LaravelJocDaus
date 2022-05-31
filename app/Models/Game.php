@@ -9,10 +9,13 @@ class Game extends Model
 {
     use HasFactory;
 
+    const youWin = 1;
+    const youLost = 2;
+
     protected $fillable = [
         'user_id',
         'dado1',
         'dado2',
-        'resultado'
+        'result'
     ];
 }
