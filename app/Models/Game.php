@@ -10,7 +10,7 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = [
-        'jugador',
+        'user_id',
         'dado1',
         'dado2',
         'resultado'

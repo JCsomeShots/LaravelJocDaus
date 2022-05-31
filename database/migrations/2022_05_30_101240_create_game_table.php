@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('game', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jugador')->references('id')->on('users');
+            $table->foreignId('user')->references('id')->on('users');
             $table->tinyInteger('dado1');
             $table->tinyInteger('dado2');
             $table->string('resultado' , 11);
