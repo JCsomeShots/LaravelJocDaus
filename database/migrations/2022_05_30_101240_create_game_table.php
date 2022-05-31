@@ -16,10 +16,11 @@ return new class extends Migration
     {
         Schema::create('game', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            // $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->rconstrained()->onDelete('cascade');
             $table->tinyInteger('dado1');
             $table->tinyInteger('dado2');
-            $table->enum('result' , [Game::youWin , Game::youLost]);
+            $table->enum('result' , [Game::youWin , Game::youLost])->default(Game::youLost);
             $table->timestamps();
         });
     }
