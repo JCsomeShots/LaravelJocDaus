@@ -58,6 +58,24 @@ class AuthController extends Controller
         
     }
 
+    public function logout(){
+                 return response(['message' => 'por aquí te vas users'], 200);
+
+    }
+
+
+    
+   public function index()
+   {
+       $users = User::all();
+    //    return $users;
+            //    return response(['message' => 'por aquí chekas los users'], 200);
+               return response()->json(['users' => $users]);
+
+   }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -68,6 +86,7 @@ class AuthController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::FindOrFail($id);
+        return response()->json(['user' => $user]);
     }
 }

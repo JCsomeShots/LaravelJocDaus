@@ -16,15 +16,15 @@ use App\Http\Controllers\API\GameController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::prefix('/players')->group( function (){
-    // Route::middleware('auth:api')->get('/all' , 'api\user\UserController@index');
+    // Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
     Route::post('/' , [AuthController::class , 'register'])->name('players.register');
-    Route::get('/' , [AuthController::class] , 'index')->name('list');
+    Route::get('/index' , [AuthController::class] , 'index')->name('players.list');
     Route::post('/login' , [AuthController::class , 'login'])->name('players.login');
     Route::post('/logout' , [AuthController::class , 'logout'])->name('players.logout');
     Route::put('/{id}' , [AuthController::class] , 'update')->name('players.update');
