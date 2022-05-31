@@ -58,6 +58,11 @@ class AuthController extends Controller
         
     }
 
+    public function logout(){
+                 return response(['message' => 'por aquí te vas users'], 200);
+
+    }
+
 
     
    public function index()

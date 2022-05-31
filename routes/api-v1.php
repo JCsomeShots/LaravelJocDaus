@@ -16,9 +16,9 @@ use App\Http\Controllers\API\GameController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::prefix('/players')->group( function (){
