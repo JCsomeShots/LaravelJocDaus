@@ -28,8 +28,23 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // $dado1 = rand(1 , 6);
+        // $dado2 = rand(1 , 6);
+        // ($dado1 + $dado2 === 7) ? $result = 'Has ganado' : $result = 'Has perdido';
+
+        // $user -> validate ([
+        //     'jugador' => 'required',
+        // ]);
+
+        // $jugada = new Jugada;
+        // $jugada -> jugador = $user -> id;
+        // $jugada -> dado1 = $dado1;
+        // $jugada -> dado2 = $dado2;
+        // $jugada -> resultado = $resultado;
+
+        // $jugada->save();
     }
+    
 
     /**
      * Display the specified resource.

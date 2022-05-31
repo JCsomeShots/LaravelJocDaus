@@ -16,10 +16,10 @@ return new class extends Migration
     {
         Schema::create('game', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
             $table->tinyInteger('dado1');
             $table->tinyInteger('dado2');
             $table->enum('result' , [Game::youWin , Game::youLost]);
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
