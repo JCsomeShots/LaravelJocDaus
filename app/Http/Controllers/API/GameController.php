@@ -27,23 +27,24 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id )
     {
-         $dado1 = rand(1 , 6);
+        $dado1 = rand(1 , 6);
         $dado2 = rand(1 , 6);
         ($dado1 + $dado2 === 7) ? $result = Game::youWin : $result = Game::youLost;
+        $user = User::Find($id);
 
-        // $user -> validate ([
-        //     'jugador' => 'required',
-        // ]);
+        $request -> validate ([
+            'nickname' => 'required',
+        ]);
 
-        $jugada = new Game;
-        // $jugada -> jugador = $user -> id;
-        $jugada -> dado1 = $dado1;
-        $jugada -> dado2 = $dado2;
-        $jugada -> resultado = $result;
+        $game = new Game;
+        $game -> dado1 = $dado1;
+        $game -> dado2 = $dado2;
+        $game -> result = $result;
+        $game -> player = $user -> id;
 
-        $jugada->save();
+        $game->save();
     }
     
 
@@ -85,5 +86,10 @@ class GameController extends Controller
     // public function winner(){
     //     return response(['message' => 'por aquí chekas quien ha ganado'], 200);
     // }
+
+    public function ranking ()
+    {
+        return response(['message' => 'por aquí rankeamos']);
+    }
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\PlayerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\GameController;
@@ -23,11 +23,11 @@ use App\Http\Controllers\API\GameController;
 
 Route::prefix('/players')->group( function (){
     // Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
-    Route::post('/' , [AuthController::class , 'register'])->name('players.register');
-    Route::get('/index' , [AuthController::class] , 'index')->name('players.list');
-    Route::post('/login' , [AuthController::class , 'login'])->name('players.login');
-    Route::post('/logout' , [AuthController::class , 'logout'])->name('players.logout');
-    Route::put('/{id}' , [AuthController::class] , 'update')->name('players.update');
+    Route::post('/' , [PlayerController::class , 'register'])->name('players.register');
+    Route::get('/' , [PlayerController::class , 'index'])->name('players.list');
+    Route::post('/login' , [PlayerController::class , 'login'])->name('players.login');
+    Route::post('/logout' , [PlayerController::class , 'logout'])->name('players.logout');
+    Route::put('/{id}' , [PlayerController::class , 'update'])->name('players.update');
 
     Route::prefix('/{id}')->group( function (){ 
         Route::get('/games' , [GameController::class] , 'index')->name('games.index');
