@@ -5,25 +5,38 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\User;
-use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Support\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use App\Http\Requests;
 
 class PlayerController extends Controller
 {
 
     public function register(Request $request)
     {
-        $validatedData = $request->validate([
-            'nickname' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8 ',
-        ]);
+       if ($request['nickname'] != 'Anonimo'){
+
+           $validatedData = $request->validate([
+               'nickname' => 'nullable|string|min:2|max:12|unique:users',
+               'email' => 'required|string|email|max:255|unique:users',
+               'password' => 'required|string|confirmed|min:8 ',
+           ]);
+        } else {
+            
+            $validatedData = $request->validate([
+                'nickname' => 'nullable|string|max:8',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|confirmed|min:8 ',
+            ]);
+       }
 
         if(!$validatedData['nickname'] | $validatedData['nickname'] == Null){ 
             $validatedData['nickname'] = 'Anonimo';
         }
+
 
         $validatedData['password'] =  Hash::make($request->password);
 
@@ -58,13 +71,14 @@ class PlayerController extends Controller
         
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
 
         // $token = $request->user()->token();
         // $token->revoke();
 
-        $user = Auth::user()->token();
-        $user->revoke();
+        // $user = Auth::user()->token();
+        // $user->revoke();
 
         return response(['message' => 'You have successfully logout'], 200);
 
@@ -74,12 +88,26 @@ class PlayerController extends Controller
     
    public function index()
    {
-       $users = User::all();
-       return $users;
-            //    return response()->json(['users' => $users]);
+        $users = User::all();
+        return $users;
+
+        // return response(['message' => 'por aquí todos los jugadores']);
+
+    
+    }   
+
+
+    public function showOnePlayer($id)
+    {
+       $user = User::with('game')->findOrFail($id);
+
+        // $user = User::find($id);
+       return $user;
+
+    // return response(['message' => 'por aquí un sólo jugador']);
+
 
    }
-
 
 
 
@@ -92,31 +120,44 @@ class PlayerController extends Controller
      */
     public function update( Request $request , $id)
     {
+
         if (! User::Find($id) ){
             return response(['message' => 'User not found'] , 404);
-        }else {
+        }
+        else {
             $user = User::Find($id);
         };
-
-        $validatedData = $request->validate([
-            'nickname' => 'nullable|string|max:255|unique',
-        ]);
-
-        // if ($validatedData['nickname'] == $user->nickname->any()){
-        //     return response(['message' => "This nickname is already taken"] , 406);
-        // }
         
-        if ($validatedData['nickname'] == $user->nickname) {
-            return response(['message' => "you can't choose the same nickname"] , 406);
+        
+        if ($request['nickname'] == $user->nickname) {
+            return response(['message' => "Sorry, This Nickname is yours already. Please Try With Different One, Thank You."] , 406);
         }
 
-        if($validatedData['nickname'] == Null | !$validatedData['nickname'] |  $validatedData['nickname'] == ''){ 
-            $validatedData['nickname'] = 'Anonimo';
+     
+        if ($request['nickname'] != 'Anonimo'){
             
+            $request->validate(
+                
+                ['nickname' => 'nullable|string|min:2|max:12|unique:users'],
+                [
+                    'nickname.string' => 'Sorry, This field must be filled by a text string',
+                    'nickname.max' => 'Sorry, You have exceeded the number of characters for this field',
+                    'nickname.min' => 'Sorry, This field must contain at least 2 characters',
+                    'nickname.unique' => 'Sorry, This Nickname already taken. Please try a different one, Thank You.',
+                ]
+            );
         }
+        if($request['nickname'] == Null | !$request['nickname'] |  $request['nickname'] == '' ){ 
+            $request['nickname'] = 'Anonimo'; 
+        } 
+      
         $user->update($request->all());
         return $user;
 
-        
     }
+
+
+  
+
 }
+

@@ -24,7 +24,8 @@ use App\Http\Controllers\API\GameController;
 Route::prefix('/players')->group( function (){
     // Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
     Route::post('/' , [PlayerController::class , 'register'])->name('players.register');
-    Route::get('/' , [PlayerController::class , 'index'])->name('players.list');
+    Route::get('/{id}' , [PlayerController::class , 'showOnePlayer'])->name('players.list.game');
+    Route::get('/index' , [PlayerController::class , 'index'])->name('players.list');
     Route::post('/login' , [PlayerController::class , 'login'])->name('players.login');
     Route::post('/logout' , [PlayerController::class , 'logout'])->name('players.logout');
     Route::put('/{id}' , [PlayerController::class , 'update'])->name('players.update');
