@@ -22,10 +22,10 @@ use App\Http\Controllers\API\GameController;
 
 
 Route::prefix('/players')->group( function (){
+    Route::post('/login' , [PlayerController::class , 'login'])->name('players.login');
     // Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
     Route::post('/' , [PlayerController::class , 'register'])->name('players.register');
-    Route::post('/login' , [PlayerController::class , 'login'])->name('players.login');
-    Route::get('/' , [GameController::class , 'showOnePlayer'])->name('players.listGames');
+    Route::get('/' , [GameController::class , 'averagePlayerList'])->name('players.listGames');
     Route::get('/index' , [PlayerController::class , 'index'])->name('players.index');
     Route::post('/logout' , [PlayerController::class , 'logout'])->name('players.logout');
     Route::put('/{id}' , [PlayerController::class , 'update'])->name('players.update');

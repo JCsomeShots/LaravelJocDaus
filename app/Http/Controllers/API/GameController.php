@@ -8,22 +8,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -44,6 +35,14 @@ class GameController extends Controller
         $game -> user_id = $id;
 
         $game->save();
+
+        if ($game->result == Game::youLost) {
+            return response (['message' => 'You just throws the dices and you lost' , $game->dado1 , $game->dado2]);
+        }
+        else {
+            return response (['message' => 'You just throws the dices and you win' , $game->dado1 , $game->dado2]);
+        }
+
     }
     
 
@@ -63,12 +62,76 @@ class GameController extends Controller
         return $user;
     }
   
-    public function showOnePlayer($id){
+    public function averagePlayerList()
+    {
         
+        $users =  User::orderBy('id')->pluck('id');
+        // return var_dump ($users);
 
-        $throws = Game::where('player_id', $id)->get();
-        return $throws;
+        foreach ($users as $user ) {
+            
+            // print_r($user ) . '</br>';
+            $throws = Game::all()
+            ->where('user_id' , $user)
+            ->count();
+
+            $losts = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 2)
+            ->count();
+
+            $wins = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 1)
+            ->count();
+
+            $totalThrows = 'The number of games played is : '. $throws;
+            $textWins1 = 'The number of games won is : '. $wins;
+            $textWin2 = 'The average number of games won is : ' ;
+            $textLost1 = 'The number of games lost is : '. $losts;
+            $textLost2 = 'The average number of games lost is : ' ;
+            $noRanking = 'no average games won';
+
+            
+            if ($throws != 0) {
+                $avgWins = round ( ($wins * 100) / $throws);
+                $avgWins = $textWin2 . $avgWins . ' % ';
+                $avglosts = round ( ($losts * 100) / $throws);
+                $avglosts = $textLost2 . $avglosts;
+
+                $avglist = [
+                   'user_id' => $user , 
+                   'throws' => $totalThrows , 
+                //    'lost' => $textLost1 , 
+                   'wins' => $textWins1 , 
+                   'avgWins' => $avgWins , 
+                //    'avgLost' => $avglosts
+                ];
+
+            }
+            else {
+                $avgWins = $textWin2 . ' 0 %';
+                $avglosts = $textLost2 . ' 0 ';
+                
+                $avglist = [
+                    'user_id' => $user , 
+                    'throws' => $totalThrows , 
+                    // 'lost' => $textLost1 , 
+                    'wins' => $wins , 
+                    // 'avgWins' => $avgWins , 
+                    // 'avgLost' => $avglosts,
+                    'ranking' => $noRanking
+                ];
+
+                }
+            
+            print_r($avglist);
+                // return $avglist;
+
+        }
+
     }
+
 
     /**
      * Remove the specified resource from storage.
