@@ -66,6 +66,7 @@ class PlayerController extends Controller
         return response(['user' => Auth::user(), 'access_token' => $accessToken], 202);
     }
 
+
     public function logout(Request $request)
     {
 
@@ -89,15 +90,12 @@ class PlayerController extends Controller
     }
 
 
-    public function showOnePlayer($id)
-    {
-        $user = User::with('game.user')->findOrFail($id);
-
-        // $user = User::find($id);
-        return $user;
-
-        // return response(['message' => 'por aquí un sólo jugador']);
-    }
+    // public function showOnePlayer($id)
+    // {
+    //     $user = User::with('game.user')->findOrFail($id);
+    //     $user = User::find($id);
+    //     return $user;
+    // }
 
 
 

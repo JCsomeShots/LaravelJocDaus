@@ -25,15 +25,15 @@ Route::prefix('/players')->group( function (){
     // Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
     Route::post('/' , [PlayerController::class , 'register'])->name('players.register');
     Route::post('/login' , [PlayerController::class , 'login'])->name('players.login');
-    Route::get('/{id}' , [PlayerController::class , 'showOnePlayer'])->name('players.listGames');
+    Route::get('/' , [GameController::class , 'showOnePlayer'])->name('players.listGames');
     Route::get('/index' , [PlayerController::class , 'index'])->name('players.index');
     Route::post('/logout' , [PlayerController::class , 'logout'])->name('players.logout');
     Route::put('/{id}' , [PlayerController::class , 'update'])->name('players.update');
 
     Route::prefix('/{id}')->group( function (){ 
-        Route::get('/games' , [GameController::class , 'index'])->name('games.index');
+        Route::get('/games' , [GameController::class , 'show'])->name('games.show');
         Route::post('/games' , [GameController::class , 'store'])->name('games.store');
-        Route::delete('/games' , [GameController::class , 'delete'])->name('games.delete');
+        Route::delete('/games' , [GameController::class , 'destroy'])->name('games.delete');
     });
 
     Route::prefix('/ranking')->group( function (){
