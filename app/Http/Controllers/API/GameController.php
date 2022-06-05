@@ -29,10 +29,13 @@ class GameController extends Controller
      */
     public function store(Request $request, $id )
     {
+        if (! User::Find($id) ){
+            return response(['message' => 'User not found'] , 404);
+        }
+
         $dado1 = rand(1 , 6);
         $dado2 = rand(1 , 6);
         ($dado1 + $dado2 === 7) ? $result = Game::youWin : $result = Game::youLost;
-        $user = User::findOrfail($id);
 
         $game = new Game;
         $game -> dado1 = $dado1;
@@ -52,11 +55,20 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        if (! User::Find($id) ){
+            return response(['message' => 'User not found'] , 404);
+        }
 
-    
+        $user = User::with('game')->findOrFail($id);
+        return $user;
+    }
   
+    public function showOnePlayer($id){
+        
+
+        $throws = Game::where('player_id', $id)->get();
+        return $throws;
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -66,7 +78,16 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (! User::Find($id) ){
+            return response(['message' => 'User not found'] , 404);
+        }
+
+        $games = Game::where('user_id' , $id)->delete();
+
+        if (! $games || $games == 0) {
+            return response (['message' => 'Sorry , Here there´s no games to delete, Please change the player ID']);
+        }
+        return response (['message' => 'you just deleted all the games for this player']);
     }
 
 
@@ -83,9 +104,5 @@ class GameController extends Controller
     //     return response(['message' => 'por aquí chekas quien ha ganado'], 200);
     // }
 
-    public function ranking ()
-    {
-        return response(['message' => 'por aquí rankeamos']);
-    }
 }
 
