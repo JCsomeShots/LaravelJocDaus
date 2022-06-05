@@ -32,17 +32,13 @@ class GameController extends Controller
         $dado1 = rand(1 , 6);
         $dado2 = rand(1 , 6);
         ($dado1 + $dado2 === 7) ? $result = Game::youWin : $result = Game::youLost;
-        $user = User::Find($id);
-
-        $request -> validate ([
-            'nickname' => 'required',
-        ]);
+        $user = User::findOrfail($id);
 
         $game = new Game;
         $game -> dado1 = $dado1;
         $game -> dado2 = $dado2;
         $game -> result = $result;
-        $game -> player = $user -> id;
+        $game -> user_id = $id;
 
         $game->save();
     }

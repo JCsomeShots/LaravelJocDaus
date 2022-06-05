@@ -14,26 +14,23 @@ use App\Http\Requests;
 
 class PlayerController extends Controller
 {
-
     public function register(Request $request)
     {
-       if ($request['nickname'] != 'Anonimo'){
-
-           $validatedData = $request->validate([
+        if ($request['nickname'] != 'Anonimo') {
+            $validatedData = $request->validate([
                'nickname' => 'nullable|string|min:2|max:12|unique:users',
                'email' => 'required|string|email|max:255|unique:users',
                'password' => 'required|string|confirmed|min:8 ',
            ]);
         } else {
-            
             $validatedData = $request->validate([
                 'nickname' => 'nullable|string|max:8',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|confirmed|min:8 ',
             ]);
-       }
+        }
 
-        if(!$validatedData['nickname'] | $validatedData['nickname'] == Null){ 
+        if (!$validatedData['nickname'] | $validatedData['nickname'] == null) {
             $validatedData['nickname'] = 'Anonimo';
         }
 
@@ -44,7 +41,7 @@ class PlayerController extends Controller
 
         $accessToken = $user->createToken('Token')->accessToken;
 
-        return response ([
+        return response([
             'user' => $user,
             'access_token' => $accessToken
         ]);
@@ -53,22 +50,20 @@ class PlayerController extends Controller
 
 
 
-    public function login (Request $request)
+    public function login(Request $request)
     {
         $loginData = $request->validate([
             'email' => 'required | email ',
             'password' => 'required '
         ]);
 
-        if (!auth()->attempt($loginData)){
-            return response (['message' => 'Invalid login credentials'] , 422);
+        if (!auth()->attempt($loginData)) {
+            return response(['message' => 'Invalid login credentials'], 422);
         }
 
         $accessToken = Auth::user()->createToken('userToken')->accessToken;
 
-        return response (['user' => Auth::user(), 'access_token' => $accessToken] , 202);
-        
-        
+        return response(['user' => Auth::user(), 'access_token' => $accessToken], 202);
     }
 
     public function logout(Request $request)
@@ -81,33 +76,28 @@ class PlayerController extends Controller
         // $user->revoke();
 
         return response(['message' => 'You have successfully logout'], 200);
-
     }
 
 
     
-   public function index()
-   {
+    public function index()
+    {
         $users = User::all();
         return $users;
 
         // return response(['message' => 'por aquí todos los jugadores']);
-
-    
-    }   
+    }
 
 
     public function showOnePlayer($id)
     {
-       $user = User::with('game')->findOrFail($id);
+        $user = User::with('game.user')->findOrFail($id);
 
         // $user = User::find($id);
-       return $user;
+        return $user;
 
-    // return response(['message' => 'por aquí un sólo jugador']);
-
-
-   }
+        // return response(['message' => 'por aquí un sólo jugador']);
+    }
 
 
 
@@ -118,11 +108,31 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request , $id)
+    public function update(Request $request, $id)
     {
-
+        
+        // $allNickname = User::all(['nickname']);
+        // $nick = $request['nickname'];
+        // $nickAnonimo = [ 'nickname' => 'Anonimo'];
+        // return [$nick , $nickAnonimo , $allNickname  ];
+        // return var_dump( $allNickname  );
+        //     if ($nickname == $nickAnonimo) {
+        //                 return response(['message' => 'es anonimo' ]);
+        //             }else {
+        //                 return response(['message' => 'No es anonimo ' ]);
+        //             }
+            
+            // foreach ($nickname as $key) {
+                
+            //     if ($key === 'Anonimo' ) { 
+            //         // var_dump($key);
+            // }
+            
+            // if ($key !== $nick ) { return; } 
+                
+            
         if (! User::Find($id) ){
-            return response(['message' => 'User not found'] , 404);
+        return response(['message' => 'User not found'] , 404);
         }
         else {
             $user = User::Find($id);
@@ -147,17 +157,13 @@ class PlayerController extends Controller
                 ]
             );
         }
-        if($request['nickname'] == Null | !$request['nickname'] |  $request['nickname'] == '' ){ 
-            $request['nickname'] = 'Anonimo'; 
-        } 
+        if($request['nickname'] == Null | !$request['nickname'] |  $request['nickname'] == '' ){
+            $request['nickname'] = 'Anonimo';
+        }
       
         $user->update($request->all());
         return $user;
 
     }
-
-
-  
-
+    
 }
-
