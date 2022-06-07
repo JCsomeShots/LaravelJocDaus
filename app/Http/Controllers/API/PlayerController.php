@@ -16,6 +16,11 @@ use App\Http\Requests;
 
 class PlayerController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('auth:api')->except(['register' , 'login']);
+    } 
+  
     public function register(Request $request)
     {
         if ($request['nickname'] != 'Anonimo') {
@@ -290,5 +295,7 @@ class PlayerController extends Controller
             return $avergaGame;
     }
 
-    
+//     Password grant client created successfully.
+// Client ID: 967d1971-e274-4a99-8064-c294ce914d2c
+// Client secret: jGcYisl4l37IGwripXYrlNZQopWlYkJ3GSZ9s42a
 }
