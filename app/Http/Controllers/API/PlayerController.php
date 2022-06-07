@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\User;
 use App\Models\Ranking;
-use Illuminate\Support\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Validator;
 use Illuminate\Validation\Rule;
 use App\Http\Requests;
 

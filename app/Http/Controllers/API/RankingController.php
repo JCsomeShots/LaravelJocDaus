@@ -7,7 +7,6 @@ use App\Models\Ranking;
 use App\Models\Noranking;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
-use Illuminate\Http\Request;
 
 class RankingController extends Controller
 {
@@ -15,8 +14,10 @@ class RankingController extends Controller
     public function ranking()
     {
         $message = 'You have no ranking assignment, because you haven`t played yet';
-        
+
         Ranking::truncate();
+        Noranking::truncate();
+
         $users =  User::pluck('id');
 
         foreach ($users as $user ) {
@@ -90,8 +91,6 @@ class RankingController extends Controller
     }
 
 
-   
-
     public function winner ()
     {
         Ranking::truncate();
@@ -134,6 +133,7 @@ class RankingController extends Controller
         return $toPrint;
 
     }
+
 
     public function loser()
     {
