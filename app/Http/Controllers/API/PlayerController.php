@@ -49,7 +49,6 @@ class PlayerController extends Controller
 
 
 
-
     public function login(Request $request)
     {
         $loginData = $request->validate([
@@ -86,21 +85,12 @@ class PlayerController extends Controller
         $users = User::all();
         return $users;
 
-        // return response(['message' => 'por aquí todos los jugadores']);
     }
-
-
-    // public function showOnePlayer($id)
-    // {
-    //     $user = User::with('game.user')->findOrFail($id);
-    //     $user = User::find($id);
-    //     return $user;
-    // }
 
 
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified User.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -109,52 +99,28 @@ class PlayerController extends Controller
     public function update(Request $request, $id)
     {
         
-        // $allNickname = User::all(['nickname']);
-        // $nick = $request['nickname'];
-        // $nickAnonimo = [ 'nickname' => 'Anonimo'];
-        // return [$nick , $nickAnonimo , $allNickname  ];
-        // return var_dump( $allNickname  );
-        //     if ($nickname == $nickAnonimo) {
-        //                 return response(['message' => 'es anonimo' ]);
-        //             }else {
-        //                 return response(['message' => 'No es anonimo ' ]);
-        //             }
-            
-            // foreach ($nickname as $key) {
-                
-            //     if ($key === 'Anonimo' ) { 
-            //         // var_dump($key);
-            // }
-            
-            // if ($key !== $nick ) { return; } 
-                
-            
         if (! User::Find($id) ){
-        return response(['message' => 'User not found'] , 404);
+            return response(['message' => 'User not found'] , 404);
         }
         else {
             $user = User::Find($id);
-        };
-        
+        }
+                
+        if ($request['nickname'] != 'Anonimo') {
+            $nickAnonimo = User::pluck('nickname');
+
+            foreach ($nickAnonimo as $nick) {
+                if ($nick == $request['nickname']) {
+                    return response (['message' => 'nickname taken']);
+                }
+            }
+        }
         
         if ($request['nickname'] == $user->nickname) {
             return response(['message' => "Sorry, This Nickname is yours already. Please Try With Different One, Thank You."] , 406);
         }
 
      
-        if ($request['nickname'] != 'Anonimo'){
-            
-            $request->validate(
-                
-                ['nickname' => 'nullable|string|min:2|max:12|unique:users'],
-                [
-                    'nickname.string' => 'Sorry, This field must be filled by a text string',
-                    'nickname.max' => 'Sorry, You have exceeded the number of characters for this field',
-                    'nickname.min' => 'Sorry, This field must contain at least 2 characters',
-                    'nickname.unique' => 'Sorry, This Nickname already taken. Please try a different one, Thank You.',
-                ]
-            );
-        }
         if($request['nickname'] == Null | !$request['nickname'] |  $request['nickname'] == '' ){
             $request['nickname'] = 'Anonimo';
         }
