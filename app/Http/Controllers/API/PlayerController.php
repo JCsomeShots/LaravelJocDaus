@@ -108,7 +108,7 @@ class PlayerController extends Controller
             $user = User::Find($id);
         }
                 
-        if ($request['nickname'] != 'Anonimo') {
+        if ($request['nickname'] != 'Anonimo' | $request['nickname'] == 'Null' | $request['nickname'] == 'null') {
             $nickAnonimo = User::pluck('nickname');
 
             foreach ($nickAnonimo as $nick) {
@@ -123,8 +123,8 @@ class PlayerController extends Controller
         }
 
      
-        if($request['nickname'] == Null | !$request['nickname'] |  $request['nickname'] == '' ){
-            $request['nickname'] = 'Anonimo';
+        if($request['nickname'] == Null | !$request['nickname'] |  $request['nickname'] == '' | $request['nickname'] == 'Null' | $request['nickname'] == 'null'){
+            $request['nickname'] = 'Anonimo' ;
         }
       
         $user->update($request->all());
