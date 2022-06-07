@@ -4,6 +4,8 @@ use App\Http\Controllers\API\PlayerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\GameController;
+use App\Http\Controllers\Api\Auth\loginController;
+use App\Http\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +18,22 @@ use App\Http\Controllers\API\GameController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 
 Route::prefix('/players')->group( function (){
-    Route::post('/login' , [PlayerController::class , 'login'])->name('players.login');
+    Route::post('/', [PlayerController::class , 'register'])->name('players.registe r');
+    Route::post('/login', [PlayerController::class , 'login'])->name('players.login');
     // Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
-    Route::post('/' , [PlayerController::class , 'register'])->name('players.register');
-    Route::get('/' , [GameController::class , 'averagePlayerList'])->name('players.listGames');
+
+    // Route::group(['middleware' => ['admin']], function () {
+        // //     Route::get('admin-view', 'HomeController@adminView')->name('admin.view');
+        // });
+    // Route::middleware('admin')->get('/' , 'api\user\GameController@averagePlayerList');
+
+    Route::get('/', [GameController::class , 'averagePlayerList'])->name('players.listGames');
     Route::get('/index' , [PlayerController::class , 'index'])->name('players.index');
     Route::post('/logout' , [PlayerController::class , 'logout'])->name('players.logout');
     Route::put('/{id}' , [PlayerController::class , 'update'])->name('players.update');
@@ -41,6 +49,8 @@ Route::prefix('/players')->group( function (){
         Route::get('/loser' , [GameController::class,'loser'])->name('ranking.loser');
         Route::get('/winner' , [GameController::class,'winner'])->name('ranking.winner');
     });
+
+
 });
 
   

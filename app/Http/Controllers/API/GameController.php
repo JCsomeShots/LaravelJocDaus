@@ -7,6 +7,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Ranking;
+use App\Models\Noranking;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -153,78 +155,78 @@ class GameController extends Controller
 
     public function ranking()
     {
-         $users =  User::pluck('id');
-         $noRanking = 'You have no ranking assignment, because you don`t play yet';
-         
+        $restart = Ranking::truncate();
+
+        $users =  User::pluck('id');
+        $message = 'You have no ranking assignment, because you don`t play yet';
 
         foreach ($users as $user ) {
             $throws = Game::all()
             ->where('user_id' , $user)
             ->count();
-            
+
             $wins = Game::all()
             ->where('user_id' , $user)
             ->where('result', 1)
             ->count();
             
+            $lost = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 2)
+            ->count();
+
+
             if ($throws != 0) {
 
                 if($wins > 0) {
-                    
+
                     $avgWins = round ( ($wins * 100) / $throws);
-                        // if(){}
-                    $ranking = [
-                        'user' => $user,
-                        'throws' => $throws ,
-                        'wins' => $wins,
-                        'avgWins' => $avgWins
-                    ];
-                    print_r ( $ranking );
-                    // return( $ranking [ $user]);
-                }
+                    $avgLosts = round ( ($lost *100) / $throws);
 
-            } 
+                    $ranking = new Ranking;
+                    $ranking -> user_id = $user;
+                    $ranking -> throws = $throws;
+                    $ranking -> win = $wins;
+                    $ranking -> lost = $lost;
+                    $ranking -> avgWins = $avgWins;
+                    $ranking -> avgLosts = $avgLosts;
+                    $ranking->save();
+                    
+                } else {
+                    $avgLosts = round ( ($lost *100) / $throws);
 
-        }
-
-        foreach ($users as $user ) {
-            $throws = Game::all()
-            ->where('user_id' , $user)
-            ->count();
-            
-            $wins = Game::all()
-            ->where('user_id' , $user)
-            ->where('result', 1)
-            ->count();
-            
-            $noWin = 'you have zero wins in ' .$throws . ' moves';
-
-            if ($throws != 0) {
-
-                if($wins == 0) {
-                    $toPrint = [
-                        'user' => $user,
-                        'Ranking' => $noWin
-                    ];
-                   print_r($toPrint);
+                    $ranking = new Ranking;
+                    $ranking -> user_id = $user;
+                    $ranking -> throws = $throws;
+                    $ranking -> win = $wins;
+                    $ranking -> lost = $lost;
+                    $ranking -> avgWins = 0;
+                    $ranking -> avgLosts = $avgLosts;
+                    $ranking->save();
+                
                 }
             } 
         }
 
-        foreach ($users as $user ) {
+        foreach ($users as $user) {
             $throws = Game::all()
-            ->where('user_id' , $user)
+            ->where('user_id', $user)
             ->count();
-            
-            if ($throws == 0) {
-                $toPrint = [
-                    'user' => $user,
-                    'Ranking' => $noRanking
-                ];
-               print_r($toPrint);
-            } 
+            if($throws == 0){
+                $Noranking = new Noranking;
+                $Noranking -> user_id = $user;
+                $Noranking -> message = $message;
+                $Noranking->save();
+            }
         }
+        
+        
+        $toPrint = Ranking::orderBy('avgWins' , 'DESC')->get();
+        $toPrint2 = Noranking::all();
 
+        return [$toPrint , $toPrint2];
+
+       
     }
 
 
@@ -260,20 +262,21 @@ class GameController extends Controller
 
     public function winner ()
     {
-        $users =  User::pluck('id');
+        $toPrint = Ranking::orderBy('avgWins' , 'DESC')->get();
 
-        $eddie = [];
+        // $users =  User::pluck('id');
 
-        foreach ($users as $user ) {
-            $throws = Game::all()
-            ->where('user_id' , $user)
-            ->count();
+        // $eddie = [];
+
+        // foreach ($users as $user ) {
+        //     $throws = Game::all()
+        //     ->where('user_id' , $user)
+        //     ->count();
             
-            $wins = Game::all()
-            ->where('user_id' , $user)
-            ->where('result', 1)
-            // ->avg();
-            ->count();
+        //     $wins = Game::all()
+        //     ->where('user_id' , $user)
+        //     ->where('result', 1)
+        //     ->count();
 
         //     $toPrint = [
         //         'user' => $user,
@@ -281,32 +284,32 @@ class GameController extends Controller
         //     ];
         //    print_r($toPrint);
             
-            if ($throws != 0) {
+            // if ($throws != 0) {
 
-                if($wins > 0) {
+            //     if($wins > 0) {
                     
-                    $avgWins = round( ($wins * 100) / $throws);
+            //         $avgWins = round( ($wins * 100) / $throws);
 
                     
 
-                    $ranking = [
-                        'user' => $user,
-                        'throws' => $throws ,
-                        'wins' => $wins,
-                        'avgWins' => $avgWins
-                    ];
+            //         $ranking = [
+            //             'user' => $user,
+            //             'throws' => $throws ,
+            //             'wins' => $wins,
+            //             'avgWins' => $avgWins
+            //         ];
 
-                    // $eddie1 = ($ranking['avgWins']);
-                    // $eddie = array_push($eddie1);
-                    // var_dump($eddie);
+            //         // $eddie1 = ($ranking['avgWins']);
+            //         // $eddie = array_push($eddie1);
+            //         // var_dump($eddie);
 
-                    var_dump ($ranking);
+            //         var_dump ($ranking);
 
-                }
+            //     }
 
-            } 
+            // } 
 
-        }
+        // }
 
     }
 

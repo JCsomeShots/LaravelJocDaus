@@ -29,4 +29,17 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    /**
+         * The application's route middleware.
+         *
+         * These middleware may be assigned to groups or used individually.
+         *
+         * @var array
+         */
+    protected $routeMiddleware = [
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin' => \App\Http\Middleware\IsAdmin::class,
+    ];
 }

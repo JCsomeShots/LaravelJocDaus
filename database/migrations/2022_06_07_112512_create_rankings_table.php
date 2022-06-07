@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('rankings', function (Blueprint $table) {
             $table->id();
-            $table->string('nickname')->nullable()->default('Anonimo');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('is_admin')->nullable()->default(null);
-            $table->rememberToken();
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->tinyInteger('throws')->nullable();
+            $table->tinyInteger('win')->nullable();
+            $table->tinyInteger('lost')->nullable();
+            $table->tinyInteger('avgWins')->nullable();
+            $table->tinyInteger('avgLosts')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('rankings');
     }
 };
