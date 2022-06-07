@@ -66,11 +66,9 @@ class GameController extends Controller
     {
         
         $users =  User::orderBy('id')->pluck('id');
-        // return var_dump ($users);
 
         foreach ($users as $user ) {
             
-            // print_r($user ) . '</br>';
             $throws = Game::all()
             ->where('user_id' , $user)
             ->count();
@@ -90,7 +88,7 @@ class GameController extends Controller
             $textWin2 = 'The average number of games won is : ' ;
             $textLost1 = 'The number of games lost is : '. $losts;
             $textLost2 = 'The average number of games lost is : ' ;
-            $noRanking = 'no average games won';
+            $noAverage = 'no average games won';
 
             
             if ($throws != 0) {
@@ -120,13 +118,12 @@ class GameController extends Controller
                     'wins' => $wins , 
                     // 'avgWins' => $avgWins , 
                     // 'avgLost' => $avglosts,
-                    'ranking' => $noRanking
+                    'ranking' => $noAverage
                 ];
 
                 }
             
             print_r($avglist);
-                // return $avglist;
 
         }
 
@@ -154,18 +151,165 @@ class GameController extends Controller
     }
 
 
+    public function ranking()
+    {
+         $users =  User::pluck('id');
+         $noRanking = 'You have no ranking assignment, because you don`t play yet';
+         
 
-    // public function ranking(){
-    //     return response(['message' => 'por aquí chekas el ranking'], 200);
-    // }
+        foreach ($users as $user ) {
+            $throws = Game::all()
+            ->where('user_id' , $user)
+            ->count();
+            
+            $wins = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 1)
+            ->count();
+            
+            if ($throws != 0) {
 
-    // public function loser(){
-    //     return response(['message' => 'por aquí chekas quien ha perdido'], 200);
-    // }
+                if($wins > 0) {
+                    
+                    $avgWins = round ( ($wins * 100) / $throws);
+                        // if(){}
+                    $ranking = [
+                        'user' => $user,
+                        'throws' => $throws ,
+                        'wins' => $wins,
+                        'avgWins' => $avgWins
+                    ];
+                    print_r ( $ranking );
+                    // return( $ranking [ $user]);
+                }
 
-    // public function winner(){
-    //     return response(['message' => 'por aquí chekas quien ha ganado'], 200);
-    // }
+            } 
+
+        }
+
+        foreach ($users as $user ) {
+            $throws = Game::all()
+            ->where('user_id' , $user)
+            ->count();
+            
+            $wins = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 1)
+            ->count();
+            
+            $noWin = 'you have zero wins in ' .$throws . ' moves';
+
+            if ($throws != 0) {
+
+                if($wins == 0) {
+                    $toPrint = [
+                        'user' => $user,
+                        'Ranking' => $noWin
+                    ];
+                   print_r($toPrint);
+                }
+            } 
+        }
+
+        foreach ($users as $user ) {
+            $throws = Game::all()
+            ->where('user_id' , $user)
+            ->count();
+            
+            if ($throws == 0) {
+                $toPrint = [
+                    'user' => $user,
+                    'Ranking' => $noRanking
+                ];
+               print_r($toPrint);
+            } 
+        }
+
+    }
+
+
+    public function loser()
+    {
+        $users =  User::pluck('id');
+
+        foreach ($users as $user ) {
+            $throws = Game::all()
+            ->where('user_id' , $user)
+            ->count();
+            
+            $wins = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 1)
+            ->count();
+            
+            $noWin = 'you have zero wins in ' .$throws . ' moves';
+
+            if ($throws != 0) {
+
+                if($wins == 0) {
+                    $toPrint = [
+                        'user' => $user,
+                        'Ranking' => $noWin
+                    ];
+                   print_r($toPrint);
+                }
+            } 
+        }
+
+    }
+
+    public function winner ()
+    {
+        $users =  User::pluck('id');
+
+        $eddie = [];
+
+        foreach ($users as $user ) {
+            $throws = Game::all()
+            ->where('user_id' , $user)
+            ->count();
+            
+            $wins = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 1)
+            // ->avg();
+            ->count();
+
+        //     $toPrint = [
+        //         'user' => $user,
+        //         'wins' => $wins
+        //     ];
+        //    print_r($toPrint);
+            
+            if ($throws != 0) {
+
+                if($wins > 0) {
+                    
+                    $avgWins = round( ($wins * 100) / $throws);
+
+                    
+
+                    $ranking = [
+                        'user' => $user,
+                        'throws' => $throws ,
+                        'wins' => $wins,
+                        'avgWins' => $avgWins
+                    ];
+
+                    // $eddie1 = ($ranking['avgWins']);
+                    // $eddie = array_push($eddie1);
+                    // var_dump($eddie);
+
+                    var_dump ($ranking);
+
+                }
+
+            } 
+
+        }
+
+    }
+
 
 }
 
