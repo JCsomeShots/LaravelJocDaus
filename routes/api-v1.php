@@ -19,25 +19,25 @@ use App\Http\Middleware;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
+// Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
+
+// Route::group(['middleware' => ['admin']], function () {
+    // //     Route::get('admin-view', 'HomeController@adminView')->name('admin.view');
+    // });
+// Route::middleware('admin')->get('/' , 'api\user\GameController@averagePlayerList');
 
 Route::prefix('/players')->group( function (){
     Route::post('/', [PlayerController::class , 'register'])->name('players.registe r');
     Route::post('/login', [PlayerController::class , 'login'])->name('players.login');
-    // Route::middleware('auth:api')->get('/all' , 'api\user\AuthController@index');
-
-    // Route::group(['middleware' => ['admin']], function () {
-        // //     Route::get('admin-view', 'HomeController@adminView')->name('admin.view');
-        // });
-    // Route::middleware('admin')->get('/' , 'api\user\GameController@averagePlayerList');
 
     Route::get('/index' , [PlayerController::class , 'index'])->name('players.index');
     Route::post('/logout' , [PlayerController::class , 'logout'])->name('players.logout');
     Route::put('/{id}' , [PlayerController::class , 'update'])->name('players.update');
-    Route::get('/', [GameController::class , 'averagePlayerList'])->name('players.listGames');
+    Route::get('/', [PlayerController::class , 'averagePlayerList'])->name('players.listGames');
 
     Route::prefix('/{id}')->group( function (){ 
         Route::get('/games' , [GameController::class , 'show'])->name('games.show');
@@ -47,8 +47,8 @@ Route::prefix('/players')->group( function (){
 
     Route::prefix('/ranking')->group( function (){
         Route::get('/' , [RankingController::class,'ranking'])->name('ranking');
-        Route::get('/loser' , [RankingController::class,'loser'])->name('ranking.loser');
         Route::get('/winner' , [RankingController::class,'winner'])->name('ranking.winner');
+        Route::get('/loser' , [RankingController::class,'loser'])->name('ranking.loser');
     });
 
 

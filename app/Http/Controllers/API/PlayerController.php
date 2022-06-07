@@ -24,7 +24,7 @@ class PlayerController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     public function register(Request $request)
     {
         if ($request['nickname'] != 'Anonimo') {
@@ -140,6 +140,74 @@ class PlayerController extends Controller
       
         $user->update($request->all());
         return $user;
+
+    }
+
+
+    public function averagePlayerList()
+    {
+        
+        $users =  User::orderBy('id')->pluck('id');
+
+        foreach ($users as $user ) {
+            
+            $throws = Game::all()
+            ->where('user_id' , $user)
+            ->count();
+
+            $losts = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 2)
+            ->count();
+
+            $wins = Game::all()
+            ->where('user_id' , $user)
+            ->where('result', 1)
+            ->count();
+
+            $totalThrows = 'The number of games played is : '. $throws;
+            $textWins1 = 'The number of games won is : '. $wins;
+            $textWin2 = 'The average number of games won is : ' ;
+            $textLost1 = 'The number of games lost is : '. $losts;
+            $textLost2 = 'The average number of games lost is : ' ;
+            $noAverage = 'no average games won';
+
+            
+            if ($throws != 0) {
+                $avgWins = round ( ($wins * 100) / $throws);
+                $avgWins = $textWin2 . $avgWins . ' % ';
+                $avglosts = round ( ($losts * 100) / $throws);
+                $avglosts = $textLost2 . $avglosts;
+
+                $avglist = [
+                   'user_id' => $user , 
+                   'throws' => $totalThrows , 
+                //    'lost' => $textLost1 , 
+                   'wins' => $textWins1 , 
+                   'avgWins' => $avgWins , 
+                //    'avgLost' => $avglosts
+                ];
+
+            }
+            else {
+                $avgWins = $textWin2 . ' 0 %';
+                $avglosts = $textLost2 . ' 0 ';
+                
+                $avglist = [
+                    'user_id' => $user , 
+                    'throws' => $totalThrows , 
+                    // 'lost' => $textLost1 , 
+                    'wins' => $wins , 
+                    // 'avgWins' => $avgWins , 
+                    // 'avgLost' => $avglosts,
+                    'ranking' => $noAverage
+                ];
+
+                }
+            
+            print_r($avglist);
+
+        }
 
     }
     
