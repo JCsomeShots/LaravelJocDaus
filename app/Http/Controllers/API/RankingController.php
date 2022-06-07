@@ -14,10 +14,10 @@ class RankingController extends Controller
     
     public function ranking()
     {
-        Ranking::truncate();
-
-        $users =  User::pluck('id');
         $message = 'You have no ranking assignment, because you haven`t played yet';
+        
+        Ranking::truncate();
+        $users =  User::pluck('id');
 
         foreach ($users as $user ) {
             $throws = Game::all()
