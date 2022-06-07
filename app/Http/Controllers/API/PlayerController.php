@@ -49,7 +49,6 @@ class PlayerController extends Controller
 
 
 
-
     public function login(Request $request)
     {
         $loginData = $request->validate([
