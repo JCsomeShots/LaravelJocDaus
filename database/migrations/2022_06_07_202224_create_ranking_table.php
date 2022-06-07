@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rankings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('throws')->nullable();
             $table->tinyInteger('win')->nullable();
             $table->tinyInteger('lost')->nullable();

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->tinyInteger('dado1');
             $table->tinyInteger('dado2');
             $table->enum('result' , [Game::youWin , Game::youLost]);
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

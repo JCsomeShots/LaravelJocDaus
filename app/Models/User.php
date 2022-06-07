@@ -48,4 +48,9 @@ class User extends Authenticatable
     public function game(){
         return $this->hasMany(Game::class);
     }
+
+    //relación uno a uno
+    public function accessToken(){
+        return $this->hasOne(AccessToken::class);
+    }
 }

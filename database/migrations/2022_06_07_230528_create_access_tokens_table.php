@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('access_tokens', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('service_id'); 
+            $table->text('access_token');
+            $table->text('refresh_token');
+            $table->dateTime('expires_at');
             $table->timestamps();
         });
     }
