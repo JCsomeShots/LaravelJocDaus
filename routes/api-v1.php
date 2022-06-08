@@ -7,6 +7,9 @@ use App\Http\Controllers\API\GameController;
 use App\Http\Controllers\API\RankingController;
 use App\Http\Controllers\API\Auth\LoginController;
 use App\Http\Middleware;
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Session\Middleware\AuthenticateSession;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +26,14 @@ use App\Http\Middleware;
 //     return $request->user();
 // });
 
-Route::post('login' , [LoginController::class] , 'store');
+Route::post('/login' , [LoginController::class , 'store']);
 
 Route::prefix('/players')->group( function (){
     Route::post('/', [PlayerController::class , 'register'])->name('players.registe r');
     Route::post('/login', [PlayerController::class , 'login'])->name('players.login');
 
     Route::get('/index' , [PlayerController::class , 'index'])->name('players.index');
-    Route::post('/logout' , [PlayerController::class , 'logout'])->name('players.logout');
+    Route::post('/{id}/logout' , [PlayerController::class , 'logout'])->name('players.logout');
     Route::put('/{id}' , [PlayerController::class , 'update'])->name('players.update');
     Route::get('/', [PlayerController::class , 'averagePlayerList'])->name('players.listGames');
     Route::get('/average', [PlayerController::class , 'averageGame'])->name('players.game');

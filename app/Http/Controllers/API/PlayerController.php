@@ -16,10 +16,10 @@ use App\Http\Requests;
 
 class PlayerController extends Controller
 {
-    public function __construct() 
-    {
-        $this->middleware('auth:api')->except(['register' , 'login']);
-    } 
+    // public function __construct() 
+    // {
+    //     $this->middleware('auth:api')->except(['register' , 'login']);
+    // } 
   
     public function register(Request $request)
     {
@@ -28,20 +28,20 @@ class PlayerController extends Controller
                'nickname' => 'nullable|string|min:2|max:12|unique:users',
                'email' => 'required|string|email|max:255|unique:users',
                'password' => 'required|string|confirmed|min:8 ',
+               'remember' => 'nullable'
            ]);
         } else {
             $validatedData = $request->validate([
                 'nickname' => 'nullable|string|max:8',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|confirmed|min:8 ',
+                'remember' => 'nullable'
             ]);
         }
 
         if (!$validatedData['nickname'] | $validatedData['nickname'] == null) {
             $validatedData['nickname'] = 'Anonimo';
         }
-
-
         $validatedData['password'] =  Hash::make($request->password);
 
         $user = User::create($validatedData);
@@ -69,6 +69,7 @@ class PlayerController extends Controller
 
         $accessToken = Auth::user()->createToken('userToken')->accessToken;
 
+
         return response(['user' => Auth::user(), 'access_token' => $accessToken], 202);
     }
 
@@ -76,13 +77,14 @@ class PlayerController extends Controller
     public function logout(Request $request)
     {
 
-        // $token = $request->user()->token();
+        $token = $request->user()->token();
+        return $token;
         // $token->revoke();
 
         // $user = Auth::user()->token();
         // $user->revoke();
 
-        return response(['message' => 'You have successfully logout'], 200);
+        // return response(['message' => 'You have successfully logout'], 200);
     }
 
 
