@@ -16,72 +16,7 @@ use App\Http\Requests;
 
 class PlayerController extends Controller
 {
-    public function register(Request $request)
-    {
-        if ($request['nickname'] != 'Anonimo') {
-            $validatedData = $request->validate([
-               'nickname' => 'nullable|string|min:2|max:12|unique:users',
-               'email' => 'required|string|email|max:255|unique:users',
-               'password' => 'required|string|confirmed|min:8 ',
-           ]);
-        } else {
-            $validatedData = $request->validate([
-                'nickname' => 'nullable|string|max:8',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|confirmed|min:8 ',
-            ]);
-        }
 
-        if (!$validatedData['nickname'] | $validatedData['nickname'] == null) {
-            $validatedData['nickname'] = 'Anonimo';
-        }
-
-
-        $validatedData['password'] =  Hash::make($request->password);
-
-        $user = User::create($validatedData);
-
-        $accessToken = $user->createToken('Token')->accessToken;
-
-        return response([
-            'user' => $user,
-            'access_token' => $accessToken
-        ]);
-    }
-
-
-
-    public function login(Request $request)
-    {
-        $loginData = $request->validate([
-            'email' => 'required | email ',
-            'password' => 'required '
-        ]);
-
-        if (!auth()->attempt($loginData)) {
-            return response(['message' => 'Invalid login credentials'], 422);
-        }
-
-        $accessToken = Auth::user()->createToken('userToken')->accessToken;
-
-        return response(['user' => Auth::user(), 'access_token' => $accessToken], 202);
-    }
-
-
-    public function logout(Request $request)
-    {
-
-        // $token = $request->user()->token();
-        // $token->revoke();
-
-        // $user = Auth::user()->token();
-        // $user->revoke();
-
-        return response(['message' => 'You have successfully logout'], 200);
-    }
-
-
-    
     public function index()
     {
         $users = User::all();
@@ -90,14 +25,6 @@ class PlayerController extends Controller
     }
 
 
-
-    /**
-     * Update the specified User.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         
@@ -200,9 +127,8 @@ class PlayerController extends Controller
     }
 
 
-    public function averageGame(){
-
-
+    public function averageGame()
+    {
         Ranking::truncate();
         $users =  User::pluck('id');
 
