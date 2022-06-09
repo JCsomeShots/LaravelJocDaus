@@ -23,5 +23,12 @@ class RoleSeeder extends Seeder
         $average_list = Permission::create(['name' => 'average list']);
         $ranking = Permission::create(['name' => 'ranking']);
        
+        $admin->syncPermissions([
+            $index_players, 
+            $average_players, 
+            $average_list, 
+            $ranking
+        ]);
+        // $permission->syncRoles($roles);
     }
 }

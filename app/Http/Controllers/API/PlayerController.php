@@ -17,6 +17,13 @@ use App\Http\Requests;
 class PlayerController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware([ 'can:index players'])->only(['index']);
+        $this->middleware([ 'can:average players'])->only(['update']);
+        $this->middleware([ 'can:average list'])->only(['update']);
+    }
+
     public function index()
     {
         $users = User::all();

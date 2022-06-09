@@ -11,6 +11,11 @@ use App\Models\Game;
 class RankingController extends Controller
 {
     
+    public function __construct()
+    {
+        $this->middleware([ 'can:ranking'])->only(['update']);
+    }
+
     public function ranking()
     {
         $message = 'You have no ranking assignment, because you haven`t played yet';
