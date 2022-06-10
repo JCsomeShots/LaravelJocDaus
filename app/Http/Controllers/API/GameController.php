@@ -17,8 +17,11 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id )
+    public function store( $id )
     {
+        $this->authorize('player');
+
+        
         if (! User::Find($id) ){
             return response(['message' => 'User not found'] , 404);
         }
