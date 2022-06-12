@@ -24,14 +24,11 @@ class LoginController extends Controller
         return response(['user' => Auth::user(), 'access_token' => $accessToken], 202);
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
 
-        // $token = $request->user()->token();
-        // $token->revoke();
-
-        // $user = Auth::user()->token();
-        // $user->revoke();
+        $user = Auth::user()->token();
+        $user->revoke();
 
         return response(['message' => 'You have successfully logout'], 200);
     }
