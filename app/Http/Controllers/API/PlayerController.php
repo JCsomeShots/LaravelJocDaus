@@ -12,16 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class PlayerController extends Controller
 {
-    
-    public static function  check()
-    {   
-        if (Auth::check())
-        {
-            if (Auth::user()->is_admin !== 1) {
-                return response(["message" => "Sorry but you are not allowed to realice this action"]);
-            }
-        }
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('EsAdmin');
+    // }
 
     public function index()
     {
@@ -36,9 +30,7 @@ class PlayerController extends Controller
 
 
     }
-
-
-    
+   
     public function averagePlayerList()
     {
         if (Auth::check())
@@ -186,8 +178,8 @@ class PlayerController extends Controller
         }
 
         $actualUser = Auth::user()->id;
-        $user_id = User::find($id);
-        $user_id = $user_id['id'];
+        $user = User::find($id);
+        $user_id = $user['id'];
         
         if (Auth::check()) {
 
@@ -200,9 +192,6 @@ class PlayerController extends Controller
         }
         
         
-        $user = User::Find($id);
-        
-                
         if ($request['nickname'] != 'Anonimo' | $request['nickname'] == 'Null' | $request['nickname'] == 'null') {
             $nickAnonimo = User::pluck('nickname');
 
@@ -222,6 +211,9 @@ class PlayerController extends Controller
             $request['nickname'] = 'Anonimo' ;
         }
         
+
+
+
         $user->update($request->all());
         return $user;
 

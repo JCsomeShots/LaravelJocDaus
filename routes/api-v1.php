@@ -23,7 +23,7 @@ use App\Http\Middleware;
 
 
 
-Route::post('players/',      [RegisterController::class , 'store'])->name('register');
+Route::post('players/', [RegisterController::class , 'store'])->name('register');
 Route::post('players/login', [LoginController::class , 'store'])->name('login');
 
 
@@ -39,6 +39,7 @@ Route::middleware(['auth:api'])->group(function () {
         
         Route::prefix('/{id}')->group(function () {
             Route::put('/', [PlayerController::class , 'update'])->name('players.update');
+            Route::put('/admin', [LoginController::class , 'update'])->name('admin.update');
             Route::get('/games', [GameController::class , 'show'])->name('games.show');
             Route::post('/games', [GameController::class , 'store'])->name('games.store');
             Route::delete('/games', [GameController::class , 'destroy'])->name('games.delete');

@@ -13,24 +13,17 @@ class RegisterController extends Controller
     
     public function store(Request $request)
     {
-        // if (Auth::user()->is_admin !== 1){
-
-        //     $validatedData = $request->validate([
-        //         'nickname' => 'nullable|string|max:8',
-        //         'email' => 'required|string|email|max:255|unique:users',
-        //         'password' => 'required|string|confirmed|min:8 ',
-        //         'is_admin'=>'required'
-        //     ]);
-
-        // } 
-        if ($request['nickname'] != 'Anonimo') {
+        
+        if ($request['nickname'] != 'Anonimo') 
+        {
             $validatedData = $request->validate([
                'nickname' => 'nullable|string|min:2|max:12|unique:users',
                'email' => 'required|string|email|max:255|unique:users',
                'password' => 'required|string|confirmed|min:8 ',
            ]);
         } 
-        else {
+        else 
+        {
             $validatedData = $request->validate([
                 'nickname' => 'nullable|string|max:8',
                 'email' => 'required|string|email|max:255|unique:users',
