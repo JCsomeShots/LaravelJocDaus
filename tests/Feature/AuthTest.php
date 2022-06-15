@@ -25,12 +25,12 @@ class ProjectTest extends TestCase
     public function register_user_on_user_table()
     {
         $user = User::factory()->create();
-        $this->withoutExceptionHandling()->post(route('register'), [
+        $response = $this->withoutExceptionHandling()->post(route('register'), [
             'email' => $user->email,
             'password' => $user->password
         ]
-        // , 
-        // ['Accept' => 'application/json']
+        , 
+        ['Accept' => 'application/json']
     );
 
         // $this->assertDatabaseHas('users', [
