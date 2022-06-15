@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,6 +22,8 @@ class User extends Authenticatable
         'nickname',
         'email',
         'password',
+        'is_admin',
+        'nombre_rol'
     ];
 
     /**
@@ -47,5 +49,16 @@ class User extends Authenticatable
 
     public function game(){
         return $this->hasMany(Game::class);
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+    
+    public function esAdmin(){
+        if($this->role->nombre_rol == 'Administrator'){
+            return true;
+        } 
+        return false;
     }
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class GameController extends Controller
 {
@@ -21,6 +23,20 @@ class GameController extends Controller
     {
         if (! User::Find($id) ){
             return response(['message' => 'User not found'] , 404);
+        }
+
+        $actualUser = Auth::user()->id;
+        $user = User::find($id);
+        $user_id = $user['id'];
+        
+        if (Auth::check()) {
+
+            if (Auth::user()->is_admin !== 1){
+
+                if ($actualUser !== $user_id) {
+                    return response(["message" => "Sorry but you are not allowed to realice this action "]);
+                }
+            }
         }
 
         $dado1 = rand(1 , 6);
@@ -57,6 +73,22 @@ class GameController extends Controller
             return response(['message' => 'User not found'] , 404);
         }
 
+
+        $actualUser = Auth::user()->id;
+        $user = User::find($id);
+        $user_id = $user['id'];
+        
+        if (Auth::check()) {
+
+            if (Auth::user()->is_admin !== 1){
+
+                if ($actualUser !== $user_id) {
+                    return response(["message" => "Sorry but you are not allowed to realice this action "]);
+                }
+            }
+        }
+        
+
         $user = User::with('game')->findOrFail($id);
 
         return $user;
@@ -75,6 +107,20 @@ class GameController extends Controller
     {
         if (! User::Find($id) ){
             return response(['message' => 'User not found'] , 404);
+        }
+
+        $actualUser = Auth::user()->id;
+        $user = User::find($id);
+        $user_id = $user['id'];
+        
+        if (Auth::check()) {
+
+            if (Auth::user()->is_admin !== 1){
+
+                if ($actualUser !== $user_id) {
+                    return response(["message" => "Sorry but you are not allowed to realice this action "]);
+                }
+            }
         }
 
         $games = Game::where('user_id' , $id)->delete();
