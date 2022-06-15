@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class PlayerController extends Controller
 {
-
-    public function check()
+    
+    public static function  check()
     {   
         if (Auth::check())
         {
@@ -31,7 +31,6 @@ class PlayerController extends Controller
                 return response(["message" => "Sorry but you are not allowed to realice this action"]);
             }
         }
-        // $this->check();
         $users = User::all();
         return $users;
 
@@ -53,19 +52,9 @@ class PlayerController extends Controller
         
         foreach ($users as $user ) {
             
-            $throws = Game::all()
-            ->where('user_id' , $user)
-            ->count();
-            
-            $losts = Game::all()
-            ->where('user_id' , $user)
-            ->where('result', 2)
-            ->count();
-            
-            $wins = Game::all()
-            ->where('user_id' , $user)
-            ->where('result', 1)
-            ->count();
+            $throws = Game::all()->where('user_id' , $user)->count();       
+            $losts = Game::all()->where('user_id' , $user)->where('result', 2)->count();
+            $wins = Game::all()->where('user_id' , $user)->where('result', 1)->count();
             
             $totalThrows = 'The number of games played is : '. $throws;
             $textWins1 = 'The number of games won is : '. $wins;
@@ -74,14 +63,13 @@ class PlayerController extends Controller
             $textLost2 = 'The average number of games lost is : ' ;
             $noAverage = 'no average games won';
             
-            
             if ($throws != 0) {
                 $avgWins = round ( ($wins * 100) / $throws);
                 $avgWins = $textWin2 . $avgWins . ' % ';
                 $avglosts = round ( ($losts * 100) / $throws);
                 $avglosts = $textLost2 . $avglosts;
                 
-                $avglist = [
+                $avglist = [ 
                     'user_id' => $user , 
                     'throws' => $totalThrows , 
                     'wins' => $textWins1 , 
@@ -89,7 +77,6 @@ class PlayerController extends Controller
                     'avgWins' => $avgWins , 
                     'avgLost' => $avglosts
                 ];
-                
             }
             else {
                 $avgWins = $textWin2 . ' 0 %';
@@ -98,15 +85,10 @@ class PlayerController extends Controller
                 $avglist = [
                     'user_id' => $user , 
                     'throws' => $totalThrows , 
-                    // 'lost' => $textLost1 , 
                     'wins' => $wins , 
-                    // 'avgWins' => $avgWins , 
-                    // 'avgLost' => $avglosts,
                     'ranking' => $noAverage
                 ];
-                
             }
-            
             print_r($avglist);
             
         }
@@ -116,19 +98,19 @@ class PlayerController extends Controller
     
     public function averageGame()
     {
+        if (Auth::check())
+        {
+            if (Auth::user()->is_admin !== 1) {
+                return response(["message" => "Sorry but you are not allowed to realice this action"]);
+            }
+        }
+
         Ranking::truncate();
         $users =  User::pluck('id');
         
         foreach ($users as $user ) {
-            $throws = Game::all()
-            ->where('user_id' , $user)
-            ->count();
-            
-            $wins = Game::all()
-            ->where('user_id' , $user)
-            ->where('result', 1)
-            ->count();
-            
+            $throws = Game::all()->where('user_id' , $user)->count();
+            $wins = Game::all()->where('user_id' , $user)->where('result', 1)->count();
             $lost = Game::all()
             ->where('user_id' , $user)
             ->where('result', 2)
@@ -168,17 +150,10 @@ class PlayerController extends Controller
         }
         
         
-        $throws = Game::all()
-        ->count();
-        
-        $users = User::all()
-        ->count();
-        
-        $wins = Ranking::all()
-        ->sum('win');
-        
-        $losts = Ranking::all()
-        ->sum('lost');
+        $throws = Game::all()->count();
+        $users = User::all()->count();
+        $wins = Ranking::all()->sum('win');
+        $losts = Ranking::all()->sum('lost');
         
         
         if ($wins != 0) {

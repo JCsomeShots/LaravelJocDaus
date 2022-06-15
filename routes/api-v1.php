@@ -45,9 +45,9 @@ Route::middleware(['auth:api'])->group(function () {
         });
 
         Route::prefix('/ranking')->group(function () {
-            Route::get('/', [RankingController::class,'ranking'])->name('ranking');
-            Route::get('/winner', [RankingController::class,'winner'])->name('ranking.winner');
-            Route::get('/loser', [RankingController::class,'loser'])->name('ranking.loser');
+            Route::get('/', [RankingController::class,'ranking'])->name('admin.ranking');
+            Route::get('/winner', [RankingController::class,'winner'])->name('admin.ranking.winner');
+            Route::get('/loser', [RankingController::class,'loser'])->name('admin.ranking.loser');
         });
     });
 
