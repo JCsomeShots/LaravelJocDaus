@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
@@ -14,12 +15,20 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         
+        // $validatedData = Validator::make([$request->all()],[
+        //     'nickname' => 'nullable|string|max:8',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|string|confirm_password|min:8 ',
+        //     'confirm_password' => 'required'
+        // ]);
+
         if ($request['nickname'] != 'Anonimo') 
         {
             $validatedData = $request->validate([
                'nickname' => 'nullable|string|min:2|max:12|unique:users',
                'email' => 'required|string|email|max:255|unique:users',
                'password' => 'required|string|confirmed|min:8 ',
+
            ]);
         } 
         else 
@@ -28,6 +37,7 @@ class RegisterController extends Controller
                 'nickname' => 'nullable|string|max:8',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|confirmed|min:8 ',
+
             ]);
         }
 
@@ -42,10 +52,12 @@ class RegisterController extends Controller
 
         $accessToken = $user->createToken('Token')->accessToken;
 
+        
+
         return response([
             'user' => $user,
             'access_token' => $accessToken
-        ]);
+        ], 201);
     }
 
     
