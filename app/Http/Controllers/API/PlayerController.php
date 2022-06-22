@@ -22,7 +22,7 @@ class PlayerController extends Controller
         if (Auth::check())
         {
             if (Auth::user()->is_admin !== 1) {
-                return response(["message" => "Sorry but you are not allowed to realice this action"]);
+                return response(["message" => "Sorry but you are not allowed to realice this action"], 404);
             }
         }
         $users = User::all();
