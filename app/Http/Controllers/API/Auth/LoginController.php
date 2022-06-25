@@ -19,10 +19,10 @@ class LoginController extends Controller
         if (!auth()->attempt($loginData)) {
             return response(['message' => 'Invalid login credentials'], 422);
         }
-
+        $user = Auth::user();
         $accessToken = Auth::user()->createToken('userToken')->accessToken;
 
-        return response(['user' => Auth::user(), 'access_token' => $accessToken], 202);
+        return response(['user' => $user, 'access_token' => $accessToken], 202);
     }
 
     public function destroy()

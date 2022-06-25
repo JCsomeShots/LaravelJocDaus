@@ -23,12 +23,12 @@ class AdminSeeder extends Seeder
             'role_id' => 1
         ]);
         
-        User::create([
-            'nickname' => 'Rubén',
-            'email' => 'ruben@gmail.com',
-            'password' => bcrypt('12345678'),
-            'is_admin' => 1,
-            'role_id' => 1
-        ]);
+        // User::create([
+        //     'nickname' => 'Rubén',
+        //     'email' => 'ruben@gmail.com',
+        //     'password' => bcrypt('12345678'),
+        //     'is_admin' => 1,
+        //     'role_id' => 1
+        // ]);
     }
 }
