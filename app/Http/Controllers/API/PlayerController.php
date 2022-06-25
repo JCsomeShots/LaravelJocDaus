@@ -26,7 +26,7 @@ class PlayerController extends Controller
             }
         }
         $users = User::all();
-        return $users;
+        return response()->json(['result' => $users], 201);
 
 
     }

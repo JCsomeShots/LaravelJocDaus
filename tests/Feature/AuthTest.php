@@ -104,22 +104,7 @@ class AuthTest extends TestCase
 
     }
 
-    /** @test */
-    // public function list_can_be_retraived()
-    // {
-    //     $this->withoutExceptionHandling();
-
-    //     //Datos de prueba
-    //     $admin = User::factory(5)->create();
-    //     $admin = Passport::actingAs($admin, ['administrate']);
-
-    //     //Método HTTP 
-    //     $response = $this->get('/api-v1/players/index');
-    //     $response->assertOk();
-
-    //     $user = User::all();
-
-    // }
+    
 
 
 
