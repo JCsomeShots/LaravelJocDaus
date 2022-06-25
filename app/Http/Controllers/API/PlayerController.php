@@ -87,7 +87,6 @@ class PlayerController extends Controller
         
     }
     
-    
     public function averageGame()
     {
         if (Auth::check())

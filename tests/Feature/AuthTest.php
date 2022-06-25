@@ -3,19 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Passport\Passport;
-use Laravel\Passport\ClientRepository;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\Passport;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-// use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\View\Factory;
-use Symfony\Component\HttpFoundation\Response;
-use DateTime;
-use Illuminate\Support\Facades\DB;
 
 
 
@@ -57,7 +47,7 @@ class AuthTest extends TestCase
     }
 
 
-        /** @test */
+    /** @test */
     public function test_register_error()
     {
         $params = [
@@ -69,7 +59,6 @@ class AuthTest extends TestCase
         $response = $this->postJson('/api-v1/players/register', $params);
         $response->assertStatus(405);
     }
-
 
     /** @test */
     public function test_user_can_login_correctly() 
@@ -91,17 +80,35 @@ class AuthTest extends TestCase
     }
     
     /** @test */
-    public function can_a_user_logout($user = null)
+    public function test_can_a_user_logout($user = null)
     {
         $user = $user ?: User::factory()->create();
-        $this->actingAs($user);
+        $user = Passport::actingAs($user);
 
-        $response = $this->actingAs($user)->post('/api-v1/players/logout');
-        // $response->assertOk();
-        $response->assertStatus(302); // espera una redirección. nos llevaría a un guest page o a un login page
-        // $response->assertJsonFragment(["message" => "You have successfully logout"]);
+        $response = $this->actingAs($user, 'api')->json('POST', '/api-v1/players/logout');
+        $response->assertOk();
 
 
+    }
+
+     /** @test */
+     public function test_a_user_or_an_admin_can_update_the_nickname()
+     {
+
+        $admin = User::factory()->create(['is_admin' => 1 ]);
+        $admin = Passport::actingAs($admin);
+        $user = User::factory()->create();
+        $user = Passport::actingAs($user);
+       
+        if ($admin['is_admin'] === 1) {
+            $response = $this->actingAs($admin, 'api')->put(route('players.update', $user->id), ['nickname' => 'juanca']);
+            $response->assertOk();
+        } 
+        
+        
+        $response = $this->actingAs($user, 'api')->put(route('players.update', $user->id), ['nickname' => 'juanca']);
+        $response->assertOk();
+        $this->assertDatabaseHas('users', [ 'nickname' => 'juanca']);
     }
 
     
