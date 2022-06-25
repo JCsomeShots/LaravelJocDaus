@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="200"></a></p>
 
 
 
@@ -53,4 +53,8 @@ Pasos a seguir
 
 8.- Para tastear los Endpoints descargar las colecciones de postman y exportar la misma al programa postman, que se encuentran en la carpeta "postman" dentro de este proyecto. Se encontrará en dos formatos : un link público / la colección en formato json
 
+9.- Tenga en cuenta que para algunas funcionalidades se le pedirá ser un usuario autentificado, y en algunas funcionalidad serán reservadas para el rol de administrador. Ambas validaciones se realizan en postman "Autoization / Bearer Token / token "
 
+10.- Si se desea usar PHPUnit para tastear la aplicación escriba desde el terminal : ./vendor/bin/phpunit. Se realizará 24 test automatizado con 29 afirmaciones ("assertions").
+
+Let's play
