@@ -31,15 +31,15 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::prefix('/players')->group( function (){
 
-        Route::post('/logout', [LoginController::class , 'destroy'])->name('logout');
+        Route::post('/logout', [LoginController::class , 'destroy'])->name('logout'); //optional
 
         Route::get('/', [PlayerController::class , 'averageGame'])->name('admin.game');
-        Route::get('/index', [PlayerController::class , 'index'])->name('admin.index');
-        Route::get('/average', [PlayerController::class , 'averagePlayerList'])->name('admin.listGames'); //this route will return an array (NO JSON) result for each player
+        Route::get('/index', [PlayerController::class , 'index'])->name('admin.index'); //optional
+        Route::get('/average', [PlayerController::class , 'averagePlayerList'])->name('admin.listGames'); // opcional - this route will return an array (NO JSON) result for each player
         
         Route::prefix('/{id}')->group(function () {
             Route::put('/', [PlayerController::class , 'update'])->name('players.update');
-            Route::put('/admin', [LoginController::class , 'update'])->name('admin.update');
+            Route::put('/admin', [LoginController::class , 'update'])->name('admin.update'); //optional - An admin can change a user behavior to admin
             Route::get('/games', [GameController::class , 'show'])->name('games.show');
             Route::post('/games', [GameController::class , 'store'])->name('games.store');
             Route::delete('/games', [GameController::class , 'destroy'])->name('games.delete');

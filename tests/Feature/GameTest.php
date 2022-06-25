@@ -23,8 +23,6 @@ class GameTest extends TestCase
         $response->assertStatus(200);
     }
 
-
-
     /** @test */
     public function test_a_user_or_an_admin_can_throw_the_dices()
     {

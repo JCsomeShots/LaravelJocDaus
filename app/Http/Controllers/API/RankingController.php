@@ -131,19 +131,9 @@ class RankingController extends Controller
         $users =  User::pluck('id');
 
         foreach ($users as $user ) {
-            $throws = Game::all()
-            ->where('user_id' , $user)
-            ->count();
-
-            $wins = Game::all()
-            ->where('user_id' , $user)
-            ->where('result', 1)
-            ->count();
-            
-            $lost = Game::all()
-            ->where('user_id' , $user)
-            ->where('result', 2)
-            ->count();
+            $throws = Game::all()->where('user_id' , $user)->count();
+            $wins = Game::all()->where('user_id' , $user)->where('result', 1)->count();
+            $lost = Game::all()->where('user_id' , $user)->where('result', 2)->count();
 
 
             if ($throws != 0) {
@@ -181,7 +171,7 @@ class RankingController extends Controller
         
         
         
-        $toPrint = Ranking::orderBy('avgWins' , 'ASC')->orderBy('lost' , 'DESC')->take(1)->get();
+        $toPrint = Ranking::orderBy('avgWins' , 'ASC')->orderBy('lost' , 'ASC')->take(1)->get();
         return $toPrint ;
 
     }

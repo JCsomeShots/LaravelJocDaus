@@ -22,11 +22,11 @@ class PlayerController extends Controller
         if (Auth::check())
         {
             if (Auth::user()->is_admin !== 1) {
-                return response(["message" => "Sorry but you are not allowed to realice this action"], 404);
+                return response(["message" => "Sorry but you are not allowed to realice this action"]);
             }
         }
         $users = User::all();
-        return response()->json(['result' => $users], 201);
+        return $users;
 
 
     }
@@ -86,6 +86,7 @@ class PlayerController extends Controller
         }
         
     }
+    
     
     public function averageGame()
     {
