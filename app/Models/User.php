@@ -22,6 +22,8 @@ class User extends Authenticatable
         'nickname',
         'email',
         'password',
+        'is_admin',
+        'nombre_rol'
     ];
 
     /**
@@ -42,4 +44,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relación de uno a muchos 
+
+    public function game(){
+        return $this->hasMany(Game::class);
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+    
+    public function esAdmin(){
+        if($this->role->nombre_rol == 'Administrator'){
+            return true;
+        } 
+        return false;
+    }
 }

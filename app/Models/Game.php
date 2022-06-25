@@ -9,10 +9,17 @@ class Game extends Model
 {
     use HasFactory;
 
+    const youWin = 1;
+    const youLost = 2;
+
     protected $fillable = [
-        'jugador',
         'dado1',
         'dado2',
-        'resultado'
+        'result',
+        'user_id'
     ];
+
+    public function user (){
+        return $this->belongsTo(User::class);
+    }
 }

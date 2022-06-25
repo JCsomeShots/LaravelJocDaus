@@ -1,0 +1,670 @@
+{
+	"info": {
+		"_postman_id": "d492b906-dacd-4020-beba-3f40701f0320",
+		"name": "Joc Daus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18785401"
+	},
+	"item": [
+		{
+			"name": "Post players register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTgwMTFkNDUwYTg0MDdhYjg2NDE5OTM5NWU2M2UxODcxMWE4ODc5NmRiZDIxYWY5ZDA0MzRhOWMxMWNkMDFlNzI5ZTE5ZjgyZDZhOTQ5MGIiLCJpYXQiOjE2NTUyODU2MTEuMjYyMzkxLCJuYmYiOjE2NTUyODU2MTEuMjYyMzkzLCJleHAiOjE2NzEwOTY4MTEuMjU5NDg3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UN-f-yeMcxldrb0lxkMVmVGRbw1KpUOPxRn1cIaypVJi5iaHfowaOErq1bXc3F1JOp_qb7Hl9SLKJEoMecm5Y6pnPbU24QQ3kr7TgQCaMSvCViCQOTQKDvDVh2uZHMGr7P2QUaBsgg6zyQ0vnKeZ7KSwLS7-5pL-lIeFOJ1po9ZGFm-YOUxUeqgYpP_pwd9ZTAAQbQpd9W9HvA1xDdLJaZ6wQ2LLQ39gvDkcPBwIR4yoGYUkqfIPOJdmNYUwOWazvbLxQsPuZpbPS4xjYFSQafOG9OoqHee-mYvngd1j8ZFGfzOSqAxops2qJmKpNNMem7_cJUIzlo-CizwLibj_hQ77uEHSN1h6lGqCj2amBCrwqybBu1qtBx2Ym-YOzMZHugwPcshpzUjZKOvOyrEwsBaDdSD9SpOq8us5HjnXAvZFEvXGuoABapoKrYmKD9WSfIH41i4wCXjGc5yDEO5f-7kaMmbOys3IlBSFGCGUWIiODqe512ucRhxj5GV43-9LU-NtEi1S5zDfpXPWz-wjWM8aYcULXR9m8y0t5KH39qKh4hyJcByWq_Ck61h4kz1RUHoZrenY7zmhKqWxmYgBeV_LZo9QkROrolaEx57lBAIcJqE2L90vPv2ZmpkqdIw98jNLMzETj-1KyTcg7limVCBcBk-cSJftBVZHxoWIb04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nickname",
+							"value": "eli",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "eli@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post players login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTIyNjVhNTg5MGQ5MjZiMjE3ODk1NDRhNTNjN2FlZmM5OWM2NTVjNTM5Yjc1MWZlODFiMDczNTcyM2ZkM2EwOTgxODgzZjU4YmU1YzdjYmUiLCJpYXQiOjE2NTU4ODUwMTAuNzc2MTI3LCJuYmYiOjE2NTU4ODUwMTAuNzc2MTI5LCJleHAiOjE2NzE2OTYyMTAuNzY3ODM5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.kpsLuxNVbX5zpOJZg3ON6zYowhU3c32zAcpgafpDFDAQS3omjgrmsXeTEh_n6GC83H3jQt6yW8GugPckqfLAFE6nN-S5AQ5J00VibAcV-dGailSdv4s812q3I1-LLktnlQA4vVS0bpIGOX4QP7H91_Sw1L2Jzln58q8OZfrJAudVfzjRxiBQH0wIW27ibG9Rr9LGU6h4mlIaS505nqKWhUu7mPrHgmFPvmWnCy_6cBKnisCSZRmvVYmkaRuz-BH2xsvoX0piCspiRTRziWeIp7EIpFrQSuhQPAh_kMhBa-SWxuVaijVDQh1gp9EeM2CPwFRRnzZ7GLr2QPonnfE8-Jh9Rhj66iqY2uZfvfU_Fl-abuKym9SbitmFFXSWxHoaWSryiL2LEhMAJ9E_KZggnMYPz_w7TYbHiLIGyIZkDyYUooeXKw0bdiCQxT2P7W5VD_0OHsO78Ctb348EuZYZCUnoM7bMlWrT309lVEIvk6xzuxO0XJBSdNHwghUIb2jPR_O7H0BYhDl4WnOJnWULY1VqssV8gVT5rIPJdlFtTfyH2FjChqBIMVPtGU5bAoTrNVEfUP9DZip56uvL_zwXckqxL7ngSR1qj4RabEdHqwa8xTMue0ekFTUob91W438hJQTAtO669m7TH-mXeazHY0DxuU0vNt47kJkwXCbfs7Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nickname",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "eli@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post login admin (Juanca or Ruben)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYWQyYjFiY2NiZmUzODkwNzA4ZjA2NDJjOTFkYjllZGQzYzJjYjQ3MTY5MGJmMTIyYzlhNDkyMDJmNzZmNGU3ZjA5ZWQ5YzdhY2M2NTljMjUiLCJpYXQiOjE2NTUwNjgyNjQuNTYzNTU4LCJuYmYiOjE2NTUwNjgyNjQuNTYzNTYsImV4cCI6MTY3MDg3OTQ2NC41NTk5NzQsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.fD2QRBbTal-9CwTEXgmbX0sNlu8KEelntTs-PtBS3DoER0gcswNaWZ5cHf0Hpffufs1g2HT1Tnk3yWowl16Z_w2ctJvlpWJ9izXex4SZl7BqfHZVlxIiEomLlTiIOGOPC7TUQ4nyinIKgQyTcAXl_vJdI7x6tEZ9oPtuz3tcc5kSMSgvygnJi7i5s3es4BiaXfBVSXmQgFVIc0YrGaNUjzcwyyx_GP-vA5rlQZtXY7wPN5FB42IZbIP8hF3Wu6R9L3rJHXOP6x7GPMLXExwwGxHml1rXHPDiU7uv49jrG23accsQuIpyzOxOs86qiadh2ZRo4rhFraesMVwQf80jDtwlUIcLUe6MZtjryZ2RaHDCqQW68MUBMpP-_nb2ho9q-5EKTmDTINwf0TmyXovtXwk8iX6hSbWpPLPXPyCCk2N_IYMBbwCPP8XkgCATAMV8J6li2kgyHPTuUZ_RS5kf4qJR57Hov0atOqiAeR3D8MtwRdkfg0sPKfW7gS0fcQYKwjpNRA71BQ2cdkoewxD7FheYIJgAtmhIJ6HZAMypPva6UUlmFH9sYBlfmGClFkVWeaOEnH_n12NJBXoKSSHkp3vxZKDtWmAm-pFqTvap55iZzDrgGCOeq4Ny_Yx5x0HsNTyz1pNllDQs3-hFKXoz7K8tmEVdwTgfmjp6rnfbPwo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "Ruben@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post players logout (opcional)",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get admin index (opcional)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTNkMTZmZjNkODhhY2FkNDBlMmFmNTEzNjdiNGU3MDMyYzMyODI0YjhmMmIyODZkYWE1MmE5OTEzNWU5NTNlYWU0Yjc1MDQwNGRjNGNkNjIiLCJpYXQiOjE2NTYxOTU0NjAuNTQ2ODU4LCJuYmYiOjE2NTYxOTU0NjAuNTQ2ODYsImV4cCI6MTY3MjAwNjY2MC41NDQxMDIsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.kh0gdJW3m4GfBeIOpFFX6PUoThdntJoqlu-1k3bmqC_HAonX3S-KuRdc0iYb34mkGxHSLlWKj0eqiQzaosoGYSZXxWLNkEDaWRde2EehZ-Imjuh7mhXVutv5RDIxLMieygOyzC0QdpU5k-WKZyK2KxMElP-Fe70k8F9-Hk-Atthv9k9zkqLeBv07UcPGhVHHt0zkLMsGAhEXnGvq2kf2ExEyBKWwcvJVvwIZQkGAcJIrLDiB0p3bJWMGGvUNdmqw6irPj4RsbRR67Mjzoe_PT7kjxD-Yyso58Yu_OdNR5bqSQnwxLjOXNOAJMzrlhD_aSLOl1m0Lr_rIDCDjoj6mtk8B6ZPQv_WHilki-Rl4i4ktmjzWF2FdS4l_EVI5UMtHlVjYCDGCeHjvnifBQ9Xlz2PBiDbMepTD9ukKZOtW339Qt7Krs6QH3LreXKHMs9P9mf2XuDv8nmVEOtiFuSair34kWYH2MD1NcPvq_0Hu1l090fz05wHbmdg1nLHeV7oP7TFC1fBlKxU6iehmX8vwhDDCjQ1o-aBzeFDrHNC9JDmkAVso7lY8Qf4bVKr6Jm4xoSOzAIRAJ95FmdRXYbEc41nhQGN46kstJ6idgPS8nSQ1k6Ezb-OhI0LCl-rdl7rU-X7T-7AUSMA8VGGj2jSV9K-xstgIDM5AQEOg_z3k1OA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTUyZWYwMTQ2ZmVlYzZhZjNmNjNmMWMwNjNmODcwODIxYjE5ZjZiNmNhNzVkYjljOTE3MzBiMmU1MGVjZDNmOWI4ODE4YWM4ZjJkZmVjZGMiLCJpYXQiOjE2NTQ4NDg0NzAuODAwNTY3LCJuYmYiOjE2NTQ4NDg0NzAuODAwNTY5LCJleHAiOjE2NzA2NTk2NzAuNzk5MDI4LCJzdWIiOiIxMiIsInNjb3BlcyI6W119.jOR4mW8pR22QGrhHKhYTtAQLpqlKLkxEonUPy7fLafxvB_bLhh7HFyzs-paJCI8XQdW3iDEC7RU5zjNkfpcaF0zBN2Sy_KJDeA4FvG84nKUh4xY9gH1OeHK9Ad9f8SLoEPBqf2n-xfrJZ0ubpb7TU9JC5SzxRquqnFNXMIgt9UioMz7u3lNfoF_y0tj0rh6ljFqwdJnTg4QtfeNQPo4LJncVFRgdDe-UAc7Re3dznFU9-1BXBqNvHXy2A2gPHJbipYEbIOESnO4bH5RnWigl-TJbvXtJX9u3WNuKt8KDriZzrLLLlYNGxb3W1ciMSPb7gAJ7h0LaNWngba3qGQVhcHgVYDmSu_EXR1fPD_OC8G4rLty9MROINK-G31K75068aumS2bCikVw29MyPi1ouQEkZJlZQ-Rjqw77GWHkLs-5e6dDFl6tAMQO0PHZaJYHyoBfAVjYiH_vhUnfMOMdr_pqSRZS5Qwh5kpv1LX1cJlEgeRnLvgfj-g7iKlWSPFDPiVE8W8dtQjfB10ehxvJ8FPFOFj38Tz-Hp9C1jQ4yyrNtSj2nnj0Zy5IVucjA_Oq81EgAb6QveTiw6TTC3g_XbQase2mrDuDJdewMRNkzs6rQWt_L7dbLOC-E7VE1z2RNjUxYEbsvVZD9BK35JVFt-pSTAZQ4HM2SXiWOcp0d5W8\"",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/index",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get player average game",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzQwYjA2MTFlNGU0NGY3ZWIxMjEwOGRlOWZhYTllOTYzYzU4Mzk1YmZhMGMzNDI2MDM0Y2FhNzI5NDNjYThjMmRiNGE3MmNlMTk0Mjc2NmQiLCJpYXQiOjE2NTYxOTUxMjIuNzA1NzI3LCJuYmYiOjE2NTYxOTUxMjIuNzA1NzI5LCJleHAiOjE2NzIwMDYzMjIuNzAyMTUzLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.Ddc9Oo6HkAo2OrGSBE89JFN4s_ZAaCT7T_UyKJ5_XFYKLp3_DUtZU04mVCCytl7G6KX8n66kJtzUnF12siE8wrrjNdnhACVDq_r-e50X6ltN-ytgiQ9pn5IXLWc_1dgJA7muzkRjvlm_AhnJBKjdRmL_i6W43D-Z5UqGOFuUd0HtBBRD4HRwl-BTW7f5YM6WURPO0JIin8Bni_ZAVnK5RtOPT9owHcsGUONv_7WgNKj0u_Dtd0nvSpbWs3eVKgn-6cbPOpDmPUaKdgLBuLc0mnN0RsfGM_4o95uwfUAbEi-oDL6_JgKajtenJ98R2QZzo0Ubx-asBwm-smBjK0r7Xtp4WFWBrUeYXmVmDYeQAEHgK9YA0lXl3PZv_kQkng5ApCk8YSeBQkidYvUIwnV7uLU9wXR152S335wMEdWRPLtNQcaI07ZnZa_alXLHGhT6JWdYmN55xtJyd_vBa-Mdql9Zfq5l3O0nMQSw2fY5pPvL3_ZtzXdN_tnZgwtjZoNWhT1sjv6qgrtIDxvrxFpyXcfQ226S7n7nu-rqRalOvRMt9bMW65d4Icbf-4wqWhG5Cc0gc8_9GIf2ClE0uBLRVBIc9iWAQFHea7BMsgOnrps9hDohN4M5xCiThnOoftREbofBZA6bkn5td4XBIMim7Xlmx3-jnvUnpUuJEyurGbs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get player average list (opcional array)",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTNkMTZmZjNkODhhY2FkNDBlMmFmNTEzNjdiNGU3MDMyYzMyODI0YjhmMmIyODZkYWE1MmE5OTEzNWU5NTNlYWU0Yjc1MDQwNGRjNGNkNjIiLCJpYXQiOjE2NTYxOTU0NjAuNTQ2ODU4LCJuYmYiOjE2NTYxOTU0NjAuNTQ2ODYsImV4cCI6MTY3MjAwNjY2MC41NDQxMDIsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.kh0gdJW3m4GfBeIOpFFX6PUoThdntJoqlu-1k3bmqC_HAonX3S-KuRdc0iYb34mkGxHSLlWKj0eqiQzaosoGYSZXxWLNkEDaWRde2EehZ-Imjuh7mhXVutv5RDIxLMieygOyzC0QdpU5k-WKZyK2KxMElP-Fe70k8F9-Hk-Atthv9k9zkqLeBv07UcPGhVHHt0zkLMsGAhEXnGvq2kf2ExEyBKWwcvJVvwIZQkGAcJIrLDiB0p3bJWMGGvUNdmqw6irPj4RsbRR67Mjzoe_PT7kjxD-Yyso58Yu_OdNR5bqSQnwxLjOXNOAJMzrlhD_aSLOl1m0Lr_rIDCDjoj6mtk8B6ZPQv_WHilki-Rl4i4ktmjzWF2FdS4l_EVI5UMtHlVjYCDGCeHjvnifBQ9Xlz2PBiDbMepTD9ukKZOtW339Qt7Krs6QH3LreXKHMs9P9mf2XuDv8nmVEOtiFuSair34kWYH2MD1NcPvq_0Hu1l090fz05wHbmdg1nLHeV7oP7TFC1fBlKxU6iehmX8vwhDDCjQ1o-aBzeFDrHNC9JDmkAVso7lY8Qf4bVKr6Jm4xoSOzAIRAJ95FmdRXYbEc41nhQGN46kstJ6idgPS8nSQ1k6Ezb-OhI0LCl-rdl7rU-X7T-7AUSMA8VGGj2jSV9K-xstgIDM5AQEOg_z3k1OA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/average",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"average"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get player oneplayer games",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTNkMTZmZjNkODhhY2FkNDBlMmFmNTEzNjdiNGU3MDMyYzMyODI0YjhmMmIyODZkYWE1MmE5OTEzNWU5NTNlYWU0Yjc1MDQwNGRjNGNkNjIiLCJpYXQiOjE2NTYxOTU0NjAuNTQ2ODU4LCJuYmYiOjE2NTYxOTU0NjAuNTQ2ODYsImV4cCI6MTY3MjAwNjY2MC41NDQxMDIsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.kh0gdJW3m4GfBeIOpFFX6PUoThdntJoqlu-1k3bmqC_HAonX3S-KuRdc0iYb34mkGxHSLlWKj0eqiQzaosoGYSZXxWLNkEDaWRde2EehZ-Imjuh7mhXVutv5RDIxLMieygOyzC0QdpU5k-WKZyK2KxMElP-Fe70k8F9-Hk-Atthv9k9zkqLeBv07UcPGhVHHt0zkLMsGAhEXnGvq2kf2ExEyBKWwcvJVvwIZQkGAcJIrLDiB0p3bJWMGGvUNdmqw6irPj4RsbRR67Mjzoe_PT7kjxD-Yyso58Yu_OdNR5bqSQnwxLjOXNOAJMzrlhD_aSLOl1m0Lr_rIDCDjoj6mtk8B6ZPQv_WHilki-Rl4i4ktmjzWF2FdS4l_EVI5UMtHlVjYCDGCeHjvnifBQ9Xlz2PBiDbMepTD9ukKZOtW339Qt7Krs6QH3LreXKHMs9P9mf2XuDv8nmVEOtiFuSair34kWYH2MD1NcPvq_0Hu1l090fz05wHbmdg1nLHeV7oP7TFC1fBlKxU6iehmX8vwhDDCjQ1o-aBzeFDrHNC9JDmkAVso7lY8Qf4bVKr6Jm4xoSOzAIRAJ95FmdRXYbEc41nhQGN46kstJ6idgPS8nSQ1k6Ezb-OhI0LCl-rdl7rU-X7T-7AUSMA8VGGj2jSV9K-xstgIDM5AQEOg_z3k1OA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/1/games",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"1",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put players update",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTRlNTI0MjBhZDM3YmRjMmIxMDAwNzk1NWRmYzFiMGNmMmIyYzBhZjA3NjFmNDU3NWVkZWEyMDYyMWRmNjdiOGE2NTRhYjZlZGY3OTc3ODciLCJpYXQiOjE2NTUzMjU1NTkuMzI4OTEsIm5iZiI6MTY1NTMyNTU1OS4zMjg5MTUsImV4cCI6MTY3MTEzNjc1OS4zMjczMTYsInN1YiI6IjYiLCJzY29wZXMiOltdfQ.Iw7L5mrYSPp7oalvibYm0TmZHcBIFatE2e5M3ZIC74P5quGLVW_sCI73lHDYsy5HXmwt460w4EDOfbkJ2Ae7UUw6FRyebmTCGBHWN9BL3cwv35f4TOCtiX8EhV_hKU_xl8oRSqzK2UL9pSQar3lQcyCBaOpbY4S8yyhnYoVYu5whcYXF0IqjMJ-BVK_Q4tx278S2zLsNWALbQReZt0y2HyRLdV5XfGqfkx3UhdUcU-6LLQSnQZuEFRi0NxXXc16AL97ZtJiYt_BXDtSv_aYfszdPIJJNZODh9fU5Eyzm1EjTyd9D0bsytPwZwXRFHVRIfbwTXSLwScp1T7DgolnZjzsXmRh5gk4_5jdzf6GMEXBNQhPjPKpJ5Yhkai9tfXMgvyyK2q498hwky72_NWE2oUUuVkYl7RcthvUz8sNmUQgO8k7qw0ht0sZveXxzEi5sLOsZzTBCWDEG0h0PjIqygPLmtbCQXtjAXzT46od6MYdqEheJb8Rr8nez0kWZj4tDNwUdtZ5yRDGmqoUX9jzo61fd7J8lQdw-uF_HumaMqr-15dm9ZZOiqRX5u2SOvaE_s6Lwz0xsnwFUFtP1gDXr3_sLjlOOXt1IR1V5XPPrkyZWTSseAxqDOSoPX8wfwM5Xsf9zh-hLqj5I4L4v5JNyiAIq6D0Lz3S1u20w55VsOnA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nickname",
+							"value": "manu56",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put players update admin (optional)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTNkMTZmZjNkODhhY2FkNDBlMmFmNTEzNjdiNGU3MDMyYzMyODI0YjhmMmIyODZkYWE1MmE5OTEzNWU5NTNlYWU0Yjc1MDQwNGRjNGNkNjIiLCJpYXQiOjE2NTYxOTU0NjAuNTQ2ODU4LCJuYmYiOjE2NTYxOTU0NjAuNTQ2ODYsImV4cCI6MTY3MjAwNjY2MC41NDQxMDIsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.kh0gdJW3m4GfBeIOpFFX6PUoThdntJoqlu-1k3bmqC_HAonX3S-KuRdc0iYb34mkGxHSLlWKj0eqiQzaosoGYSZXxWLNkEDaWRde2EehZ-Imjuh7mhXVutv5RDIxLMieygOyzC0QdpU5k-WKZyK2KxMElP-Fe70k8F9-Hk-Atthv9k9zkqLeBv07UcPGhVHHt0zkLMsGAhEXnGvq2kf2ExEyBKWwcvJVvwIZQkGAcJIrLDiB0p3bJWMGGvUNdmqw6irPj4RsbRR67Mjzoe_PT7kjxD-Yyso58Yu_OdNR5bqSQnwxLjOXNOAJMzrlhD_aSLOl1m0Lr_rIDCDjoj6mtk8B6ZPQv_WHilki-Rl4i4ktmjzWF2FdS4l_EVI5UMtHlVjYCDGCeHjvnifBQ9Xlz2PBiDbMepTD9ukKZOtW339Qt7Krs6QH3LreXKHMs9P9mf2XuDv8nmVEOtiFuSair34kWYH2MD1NcPvq_0Hu1l090fz05wHbmdg1nLHeV7oP7TFC1fBlKxU6iehmX8vwhDDCjQ1o-aBzeFDrHNC9JDmkAVso7lY8Qf4bVKr6Jm4xoSOzAIRAJ95FmdRXYbEc41nhQGN46kstJ6idgPS8nSQ1k6Ezb-OhI0LCl-rdl7rU-X7T-7AUSMA8VGGj2jSV9K-xstgIDM5AQEOg_z3k1OA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_admin",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/6/admin",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"6",
+						"admin"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post games throws dices",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOGRkZGVmMWM3OGEzNTBhMWI3YmFiYzAyNWQzNWI5NWY1YzNkZWRkZTkxYjI5ZTJiMzFiYjU5MTM5NTcxYmQ3NzBkOGE4ZDVhNzlmODAyNjMiLCJpYXQiOjE2NTYxODE5NjkuODU5NDIzLCJuYmYiOjE2NTYxODE5NjkuODU5NDI1LCJleHAiOjE2NzE5OTMxNjkuODU3MzgyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.FwpSglX5swcUaCnjVeDrMP5DWSLgu3DZeXELKSkaIvkMyCj7ZVOS5BQ5v4fswyAhCoT57dtFBpBTuxInBEAKBTPhRi8mAynb7_8lfOI4GL3XcLL_hjTK0T8-DYjkxE3Ot9nfVBzA9VWn5Hn6V-mPFY_SsGTzXI3WuRgHAzV5YIcFpmvD-qpoISnVqR0jG4jAYar10fWkGme3lRw6ZcR8L_Ma_txHi2C_i6IHQzHuGEX1zhU3OdZFIRt2XnHyvUuxuSBLmOux118hTUcU6iLeCMT74FtOMsi3CN6Mr9aNk9PYq6BKXfbP_-Q0_QkXM4n8n4Zukie3zA87vM6vDaAZ3i0Lk66UrYp05Cs0Kn2sqK1Qdz_2kkxmHhS7i37S-tdkSfpjd_PMk02fNvt76q9zHDlUSyMDfK68oZcXOShprY_XLGfjwj7682OnURJ2ixfb2AZH05RF1MD6Cg1rBsrEUHxq_HXCg3dBhCt9bCLvflj_jeyL7lWNo1YuZyUdgBfI0pJtmj9FJDLDUMZnXW7RCyWRE-3o9_8e9UNTo70gtwMGBJinh1Dv--JDjxeAcP-o9yTDLmsjyN0eHW8vyQsmI6ettHgW3WJ_zy7Xztd1YnKYw2J0G50U71pk9b3D-S521Kab7fZu238phSMVU8KiWvx06AVsLCtA-Jd-W_jarCs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/5/games",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"5",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete games delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/5/games",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"5",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get player ranking",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTNkMTZmZjNkODhhY2FkNDBlMmFmNTEzNjdiNGU3MDMyYzMyODI0YjhmMmIyODZkYWE1MmE5OTEzNWU5NTNlYWU0Yjc1MDQwNGRjNGNkNjIiLCJpYXQiOjE2NTYxOTU0NjAuNTQ2ODU4LCJuYmYiOjE2NTYxOTU0NjAuNTQ2ODYsImV4cCI6MTY3MjAwNjY2MC41NDQxMDIsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.kh0gdJW3m4GfBeIOpFFX6PUoThdntJoqlu-1k3bmqC_HAonX3S-KuRdc0iYb34mkGxHSLlWKj0eqiQzaosoGYSZXxWLNkEDaWRde2EehZ-Imjuh7mhXVutv5RDIxLMieygOyzC0QdpU5k-WKZyK2KxMElP-Fe70k8F9-Hk-Atthv9k9zkqLeBv07UcPGhVHHt0zkLMsGAhEXnGvq2kf2ExEyBKWwcvJVvwIZQkGAcJIrLDiB0p3bJWMGGvUNdmqw6irPj4RsbRR67Mjzoe_PT7kjxD-Yyso58Yu_OdNR5bqSQnwxLjOXNOAJMzrlhD_aSLOl1m0Lr_rIDCDjoj6mtk8B6ZPQv_WHilki-Rl4i4ktmjzWF2FdS4l_EVI5UMtHlVjYCDGCeHjvnifBQ9Xlz2PBiDbMepTD9ukKZOtW339Qt7Krs6QH3LreXKHMs9P9mf2XuDv8nmVEOtiFuSair34kWYH2MD1NcPvq_0Hu1l090fz05wHbmdg1nLHeV7oP7TFC1fBlKxU6iehmX8vwhDDCjQ1o-aBzeFDrHNC9JDmkAVso7lY8Qf4bVKr6Jm4xoSOzAIRAJ95FmdRXYbEc41nhQGN46kstJ6idgPS8nSQ1k6Ezb-OhI0LCl-rdl7rU-X7T-7AUSMA8VGGj2jSV9K-xstgIDM5AQEOg_z3k1OA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/ranking",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"ranking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get players ranking winner",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTNkMTZmZjNkODhhY2FkNDBlMmFmNTEzNjdiNGU3MDMyYzMyODI0YjhmMmIyODZkYWE1MmE5OTEzNWU5NTNlYWU0Yjc1MDQwNGRjNGNkNjIiLCJpYXQiOjE2NTYxOTU0NjAuNTQ2ODU4LCJuYmYiOjE2NTYxOTU0NjAuNTQ2ODYsImV4cCI6MTY3MjAwNjY2MC41NDQxMDIsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.kh0gdJW3m4GfBeIOpFFX6PUoThdntJoqlu-1k3bmqC_HAonX3S-KuRdc0iYb34mkGxHSLlWKj0eqiQzaosoGYSZXxWLNkEDaWRde2EehZ-Imjuh7mhXVutv5RDIxLMieygOyzC0QdpU5k-WKZyK2KxMElP-Fe70k8F9-Hk-Atthv9k9zkqLeBv07UcPGhVHHt0zkLMsGAhEXnGvq2kf2ExEyBKWwcvJVvwIZQkGAcJIrLDiB0p3bJWMGGvUNdmqw6irPj4RsbRR67Mjzoe_PT7kjxD-Yyso58Yu_OdNR5bqSQnwxLjOXNOAJMzrlhD_aSLOl1m0Lr_rIDCDjoj6mtk8B6ZPQv_WHilki-Rl4i4ktmjzWF2FdS4l_EVI5UMtHlVjYCDGCeHjvnifBQ9Xlz2PBiDbMepTD9ukKZOtW339Qt7Krs6QH3LreXKHMs9P9mf2XuDv8nmVEOtiFuSair34kWYH2MD1NcPvq_0Hu1l090fz05wHbmdg1nLHeV7oP7TFC1fBlKxU6iehmX8vwhDDCjQ1o-aBzeFDrHNC9JDmkAVso7lY8Qf4bVKr6Jm4xoSOzAIRAJ95FmdRXYbEc41nhQGN46kstJ6idgPS8nSQ1k6Ezb-OhI0LCl-rdl7rU-X7T-7AUSMA8VGGj2jSV9K-xstgIDM5AQEOg_z3k1OA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/ranking/winner",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"ranking",
+						"winner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get players ranking loser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOTNkMTZmZjNkODhhY2FkNDBlMmFmNTEzNjdiNGU3MDMyYzMyODI0YjhmMmIyODZkYWE1MmE5OTEzNWU5NTNlYWU0Yjc1MDQwNGRjNGNkNjIiLCJpYXQiOjE2NTYxOTU0NjAuNTQ2ODU4LCJuYmYiOjE2NTYxOTU0NjAuNTQ2ODYsImV4cCI6MTY3MjAwNjY2MC41NDQxMDIsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.kh0gdJW3m4GfBeIOpFFX6PUoThdntJoqlu-1k3bmqC_HAonX3S-KuRdc0iYb34mkGxHSLlWKj0eqiQzaosoGYSZXxWLNkEDaWRde2EehZ-Imjuh7mhXVutv5RDIxLMieygOyzC0QdpU5k-WKZyK2KxMElP-Fe70k8F9-Hk-Atthv9k9zkqLeBv07UcPGhVHHt0zkLMsGAhEXnGvq2kf2ExEyBKWwcvJVvwIZQkGAcJIrLDiB0p3bJWMGGvUNdmqw6irPj4RsbRR67Mjzoe_PT7kjxD-Yyso58Yu_OdNR5bqSQnwxLjOXNOAJMzrlhD_aSLOl1m0Lr_rIDCDjoj6mtk8B6ZPQv_WHilki-Rl4i4ktmjzWF2FdS4l_EVI5UMtHlVjYCDGCeHjvnifBQ9Xlz2PBiDbMepTD9ukKZOtW339Qt7Krs6QH3LreXKHMs9P9mf2XuDv8nmVEOtiFuSair34kWYH2MD1NcPvq_0Hu1l090fz05wHbmdg1nLHeV7oP7TFC1fBlKxU6iehmX8vwhDDCjQ1o-aBzeFDrHNC9JDmkAVso7lY8Qf4bVKr6Jm4xoSOzAIRAJ95FmdRXYbEc41nhQGN46kstJ6idgPS8nSQ1k6Ezb-OhI0LCl-rdl7rU-X7T-7AUSMA8VGGj2jSV9K-xstgIDM5AQEOg_z3k1OA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-v1/players/ranking/loser",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-v1",
+						"players",
+						"ranking",
+						"loser"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
