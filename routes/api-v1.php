@@ -34,8 +34,8 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('/logout', [LoginController::class , 'destroy'])->name('logout');
 
         Route::get('/index', [PlayerController::class , 'index'])->name('admin.index');
-        Route::get('/', [PlayerController::class , 'averagePlayerList'])->name('admin.listGames');
-        Route::get('/average', [PlayerController::class , 'averageGame'])->name('admin.game');
+        Route::get('/', [PlayerController::class , 'averageGame'])->name('admin.game');
+        Route::get('/average', [PlayerController::class , 'averagePlayerList'])->name('admin.listGames'); //this route will return an array (NO JSON) of each player
         
         Route::prefix('/{id}')->group(function () {
             Route::put('/', [PlayerController::class , 'update'])->name('players.update');
