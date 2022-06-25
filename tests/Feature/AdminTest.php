@@ -35,7 +35,7 @@ class PlayerTest extends TestCase
        
         if ($admin['is_admin'] === 1) {
             $response = $this->actingAs($admin, 'api')->json('GET', '/api-v1/players/index');
-            $response->assertStatus(201);
+            $response->assertOk();
         } 
     }
 
