@@ -53,9 +53,10 @@ Pasos a seguir
 5.- Crear base de datos -- Ingrese en terminal : mysql -u root -p : CREATE DATABASE jocDaus CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 
 6.- Correr migraciones y seeds
+      Creará administradores (2) jugadores (10) y jugadas (30)  Ingrese en terminal :  
 
-    Creará administradores (2) jugadores (10) y jugadas (30)  Ingrese en terminal :  
-    --  php artisan migrate:fresh --seed
+  
+     php artisan migrate:fresh --seed
     
     o si lo prefiere también puede hacer una migración sin usuarios, Ingrese en terminal :
     -- php artisan migrate:fresh
