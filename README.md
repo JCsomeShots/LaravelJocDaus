@@ -54,9 +54,14 @@ Pasos a seguir
 
 6.- Correr migraciones y seeds
 
-    --  Creará administradores (2) jugadores (10) y jugadas (30)  Ingrese en terminal :  php artisan migrate:fresh --seed
+    Creará administradores (2) jugadores (10) y jugadas (30)  Ingrese en terminal :  
+    --  php artisan migrate:fresh --seed
+    
+    o si lo prefiere también puede hacer una migración sin usuarios, Ingrese en terminal :
+    -- php artisan migrate:fresh
 
-7.- Instalar Passport -- Ingrese en la terminal : php artisan passport:instal --force
+7.- Instalar Passport , Ingrese en la terminal : 
+    -- php artisan passport:instal --force
 
 8.- Para tastear los Endpoints descargar las colecciones de postman y exportar la misma al programa postman, que se encuentran en la carpeta "postman" dentro de este proyecto. Se encontrará en dos formatos : un link público / la colección en formato json
 
